@@ -927,16 +927,60 @@ h1,h2,h3,h4,h5,h6{
 /* ==========================================================================
    PORTFOLIO
    ========================================================================== */
+.portfolio{
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #eef2ff 0%, #f5f3ff 45%, #faf5ff 100%);
+}
+.portfolio-glow-1, .portfolio-glow-2{
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  z-index: 0;
+  pointer-events: none;
+}
+.portfolio-glow-1{
+  width: 420px; height: 420px;
+  background: var(--blue);
+  opacity: 0.14;
+  top: -120px; left: -100px;
+}
+.portfolio-glow-2{
+  width: 380px; height: 380px;
+  background: var(--purple);
+  opacity: 0.14;
+  bottom: -140px; right: -100px;
+}
+.portfolio .container{ position: relative; z-index: 1; }
+
 .portfolio-grid{
   grid-template-columns: repeat(3, 1fr);
+}
+.portfolio-grid.two-projects{
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 820px;
+  margin: 0 auto;
 }
 .portfolio-card{
   background: var(--white);
   border-radius: var(--radius-md);
   overflow: hidden;
   border: 1px solid var(--gray-200);
+  position: relative;
   transition: var(--transition);
 }
+.portfolio-card::after{
+  content: '';
+  position: absolute;
+  top: 0; left: -60%;
+  width: 45%; height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.5), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.7s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+.portfolio-card:hover::after{ left: 130%; }
 .portfolio-card:hover{
   transform: translateY(-8px);
   box-shadow: var(--shadow-lg);
@@ -996,11 +1040,6 @@ h1,h2,h3,h4,h5,h6{
 }
 .portfolio-visit-link i{ font-size: 0.75rem; }
 .portfolio-visit-link:hover{ color: var(--purple); gap: 11px; }
-.portfolio-grid.single-project{
-  grid-template-columns: 1fr;
-  max-width: 460px;
-  margin: 0 auto;
-}
 .portfolio-note{
   text-align: center;
   margin-top: 32px;
@@ -1479,6 +1518,7 @@ h1,h2,h3,h4,h5,h6{
   .services-grid{ grid-template-columns: 1fr; }
   .why-us-grid{ grid-template-columns: repeat(2, 1fr); }
   .portfolio-grid{ grid-template-columns: 1fr; }
+  .portfolio-grid.two-projects{ grid-template-columns: 1fr; max-width: 460px; }
   .tech-grid{ grid-template-columns: repeat(3, 1fr); }
 
   .process-track{ grid-template-columns: 1fr; gap: 18px; }

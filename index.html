@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <!-- Styles -->
-<link rel="stylesheet" href="css/style.css?v=2">
+<link rel="stylesheet" href="css/style.css?v=3">
 
 <!-- Favicon -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%232563eb'/%3E%3Cstop offset='1' stop-color='%237c3aed'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='24' fill='url(%23g)'/%3E%3Ctext x='50' y='68' font-size='55' font-family='Arial' font-weight='bold' fill='white' text-anchor='middle'%3EF%3C/text%3E%3C/svg%3E">
@@ -425,7 +425,9 @@
   </section>
 
   <!-- ============ PORTFOLIO ============ -->
-  <section class="portfolio section section-alt" id="portfolio">
+  <section class="portfolio section" id="portfolio">
+    <div class="portfolio-glow-1" aria-hidden="true"></div>
+    <div class="portfolio-glow-2" aria-hidden="true"></div>
     <div class="container">
       <div class="section-head reveal-up">
         <span class="eyebrow center">Our Work</span>
@@ -433,7 +435,7 @@
         <p class="section-text center">A glimpse at what we've built for our clients.</p>
       </div>
 
-      <div class="grid portfolio-grid single-project">
+      <div class="grid portfolio-grid two-projects">
 
         <!-- Real Project -->
         <article class="portfolio-card reveal-up">
@@ -470,6 +472,50 @@
             </div>
             <a href="https://www.revolutionclasses.com" target="_blank" rel="noopener noreferrer" class="portfolio-visit-link">
               revolutionclasses.com <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Frontend Web Studio — this website -->
+        <article class="portfolio-card reveal-up delay-1">
+          <div class="portfolio-thumb thumb-fws">
+            <svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="260" fill="#eef2ff"/>
+              <rect x="0" y="0" width="400" height="30" fill="#ffffff"/>
+              <circle cx="16" cy="15" r="4" fill="#ef4444"/>
+              <circle cx="30" cy="15" r="4" fill="#f59e0b"/>
+              <circle cx="44" cy="15" r="4" fill="#22c55e"/>
+              <rect x="130" y="9" width="140" height="12" rx="6" fill="#f1f5f9"/>
+              <rect x="18" y="46" width="70" height="10" rx="3" fill="url(#fwsGrad1)"/>
+              <rect x="300" y="44" width="82" height="16" rx="8" fill="url(#fwsGrad1)"/>
+              <defs>
+                <linearGradient id="fwsGrad1" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#2563eb"/><stop offset="1" stop-color="#7c3aed"/></linearGradient>
+                <linearGradient id="fwsGrad2" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2563eb"/><stop offset="1" stop-color="#7c3aed"/></linearGradient>
+              </defs>
+              <rect x="18" y="80" width="230" height="16" rx="4" fill="#1e293b"/>
+              <rect x="18" y="104" width="300" height="10" rx="4" fill="#94a3b8"/>
+              <rect x="18" y="120" width="260" height="10" rx="4" fill="#cbd5e1"/>
+              <rect x="18" y="144" width="110" height="30" rx="15" fill="url(#fwsGrad2)"/>
+              <rect x="18" y="192" width="110" height="52" rx="10" fill="#ffffff" stroke="#e2e8f0"/>
+              <rect x="145" y="192" width="110" height="52" rx="10" fill="#ffffff" stroke="#e2e8f0"/>
+              <rect x="272" y="192" width="110" height="52" rx="10" fill="#ffffff" stroke="#e2e8f0"/>
+              <circle cx="43" cy="209" r="8" fill="url(#fwsGrad2)"/>
+              <circle cx="170" cy="209" r="8" fill="url(#fwsGrad2)"/>
+              <circle cx="297" cy="209" r="8" fill="url(#fwsGrad2)"/>
+            </svg>
+            <div class="portfolio-overlay">
+              <a href="https://github.com/digvijaykum24/frontendwebstudio" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">View Project <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+          </div>
+          <div class="portfolio-info">
+            <span class="portfolio-tag">Web Agency</span>
+            <h3>Frontend Web Studio</h3>
+            <p>Our own agency website — the premium, animated, fully responsive site you're on right now, built from the ground up.</p>
+            <div class="portfolio-tech">
+              <span>HTML</span><span>CSS</span><span>JavaScript</span>
+            </div>
+            <a href="https://github.com/digvijaykum24/frontendwebstudio" target="_blank" rel="noopener noreferrer" class="portfolio-visit-link">
+              View on GitHub <i class="fa-brands fa-github"></i>
             </a>
           </div>
         </article>
@@ -752,6 +798,6 @@
 <!-- Back to top -->
 <button id="backToTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
 
-<script src="js/main.js?v=2"></script>
+<script src="js/main.js?v=3"></script>
 </body>
 </html>
