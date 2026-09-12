@@ -27,6 +27,19 @@ document.addEventListener('DOMContentLoaded', function () {
   handleNavbarScroll();
   window.addEventListener('scroll', handleNavbarScroll, { passive: true });
 
+  /* ---------- Smooth Scroll for In-Page Links (no #hash in the URL) ---------- */
+  var NAVBAR_OFFSET = 90; // navbar height (78px) + a little breathing room
+  document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      var targetId = this.getAttribute('href').slice(1);
+      var targetEl = targetId ? document.getElementById(targetId) : null;
+      if (!targetEl) return;
+      e.preventDefault();
+      var targetY = targetEl.getBoundingClientRect().top + window.scrollY - NAVBAR_OFFSET;
+      window.scrollTo({ top: Math.max(targetY, 0), behavior: 'smooth' });
+    });
+  });
+
   /* ---------- Scroll Progress Bar ---------- */
   var scrollProgress = document.getElementById('scrollProgress');
   function updateScrollProgress() {
