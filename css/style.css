@@ -1052,26 +1052,50 @@ h1,h2,h3,h4,h5,h6{
    ========================================================================== */
 .tech-grid{
   display: grid;
-  grid-template-columns: repeat(9, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 16px;
 }
 .tech-card{
   background: var(--white);
   border: 1px solid var(--gray-200);
   border-radius: var(--radius-md);
-  padding: 24px 8px;
+  padding: 22px 8px;
   text-align: center;
+  position: relative;
+  overflow: hidden;
   transition: var(--transition);
 }
-.tech-card i{ font-size: 1.9rem; color: var(--navy); display: block; margin-bottom: 10px; transition: var(--transition); }
+.tech-card::before{
+  content: '';
+  position: absolute;
+  top: 0; left: -60%;
+  width: 45%; height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.85), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.7s ease;
+  pointer-events: none;
+}
+.tech-card:hover::before{ left: 130%; }
+.tech-card i{
+  width: 46px; height: 46px;
+  margin: 0 auto 12px;
+  border-radius: 14px;
+  background: var(--gradient-primary);
+  color: var(--white);
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 16px rgba(124, 58, 237, 0.25);
+  transition: var(--transition);
+}
 .tech-card span{ font-size: 0.78rem; font-weight: 600; color: var(--gray-600); }
 .tech-card:hover{
   transform: translateY(-6px);
   box-shadow: var(--shadow-md);
-  border-color: transparent;
-  background: var(--gradient-primary);
+  border-color: rgba(124, 58, 237, 0.25);
 }
-.tech-card:hover i, .tech-card:hover span{ color: var(--white); }
+.tech-card:hover i{ transform: scale(1.1) rotate(-6deg); }
 
 /* ==========================================================================
    FAQ
@@ -1209,7 +1233,28 @@ h1,h2,h3,h4,h5,h6{
   padding: 40px;
   box-shadow: var(--shadow-lg);
   border: 1px solid var(--gray-200);
+  position: relative;
+  overflow: hidden;
 }
+.contact-form-wrap::before{
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--gradient-primary);
+}
+.contact-form-glow{
+  position: absolute;
+  width: 260px; height: 260px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  opacity: 0.08;
+  filter: blur(70px);
+  top: -100px; right: -80px;
+  pointer-events: none;
+  z-index: 0;
+}
+.contact-form{ position: relative; z-index: 1; }
 .form-row{
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1224,11 +1269,25 @@ h1,h2,h3,h4,h5,h6{
   margin-bottom: 8px;
 }
 .form-group label span{ color: #ef4444; }
+
+.input-icon{ position: relative; }
+.input-icon > i{
+  position: absolute;
+  left: 16px; top: 50%;
+  transform: translateY(-50%);
+  color: var(--gray-400);
+  font-size: 0.95rem;
+  transition: var(--transition);
+  pointer-events: none;
+}
+.input-icon.input-icon-top > i{ top: 18px; transform: none; }
+.input-icon:focus-within > i{ color: var(--blue); }
+
 .form-group input,
 .form-group select,
 .form-group textarea{
   width: 100%;
-  padding: 13px 16px;
+  padding: 13px 16px 13px 44px;
   border: 1.5px solid var(--gray-200);
   border-radius: var(--radius-sm);
   color: var(--text-dark);
@@ -1241,15 +1300,38 @@ h1,h2,h3,h4,h5,h6{
   outline: none;
   border-color: var(--blue);
   background: var(--white);
-  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12), 0 0 0 1px rgba(124, 58, 237, 0.15);
 }
-.form-group textarea{ resize: vertical; min-height: 100px; }
+.form-group textarea{ resize: vertical; min-height: 100px; padding-top: 14px; }
 .form-group.error input,
 .form-group.error select,
 .form-group.error textarea{
   border-color: #ef4444;
   background: #fef2f2;
 }
+.form-group.error .input-icon > i{ color: #ef4444; }
+
+/* Staggered entrance for the form's own children, once the card scrolls
+   into view (piggybacks on the existing reveal-up/IntersectionObserver
+   system — no extra JS needed). */
+.contact-form-wrap.reveal-up .contact-form > .form-row,
+.contact-form-wrap.reveal-up .contact-form > .form-group,
+.contact-form-wrap.reveal-up .contact-form > button{
+  opacity: 0;
+  transform: translateY(14px);
+}
+.contact-form-wrap.reveal-up.visible .contact-form > .form-row,
+.contact-form-wrap.reveal-up.visible .contact-form > .form-group,
+.contact-form-wrap.reveal-up.visible .contact-form > button{
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.contact-form-wrap.reveal-up.visible .contact-form > *:nth-child(2){ transition-delay: 0.08s; }
+.contact-form-wrap.reveal-up.visible .contact-form > *:nth-child(3){ transition-delay: 0.16s; }
+.contact-form-wrap.reveal-up.visible .contact-form > *:nth-child(4){ transition-delay: 0.24s; }
+.contact-form-wrap.reveal-up.visible .contact-form > *:nth-child(5){ transition-delay: 0.32s; }
+.contact-form-wrap.reveal-up.visible .contact-form > *:nth-child(6){ transition-delay: 0.4s; }
 .error-msg{
   display: none;
   font-size: 0.78rem;

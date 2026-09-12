@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <!-- Styles -->
-<link rel="stylesheet" href="css/style.css?v=3">
+<link rel="stylesheet" href="css/style.css?v=4">
 
 <!-- Favicon -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%232563eb'/%3E%3Cstop offset='1' stop-color='%237c3aed'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='24' fill='url(%23g)'/%3E%3Ctext x='50' y='68' font-size='55' font-family='Arial' font-weight='bold' fill='white' text-anchor='middle'%3EF%3C/text%3E%3C/svg%3E">
@@ -544,7 +544,8 @@
         <div class="tech-card reveal-up delay-1"><i class="fa-brands fa-node-js"></i><span>Node.js</span></div>
         <div class="tech-card reveal-up delay-2"><i class="fa-solid fa-server"></i><span>Express.js</span></div>
         <div class="tech-card reveal-up delay-3"><i class="fa-solid fa-leaf"></i><span>MongoDB</span></div>
-        <div class="tech-card reveal-up"><i class="fa-brands fa-github"></i><span>GitHub</span></div>
+        <div class="tech-card reveal-up"><i class="fa-solid fa-diagram-project"></i><span>Mongoose</span></div>
+        <div class="tech-card reveal-up delay-1"><i class="fa-brands fa-github"></i><span>GitHub</span></div>
       </div>
     </div>
   </section>
@@ -607,17 +608,24 @@
       </div>
 
       <div class="contact-form-wrap reveal-up delay-1">
+        <div class="contact-form-glow" aria-hidden="true"></div>
         <form class="contact-form" id="contactForm" action="https://formspree.io/f/mgaebwaw" method="POST" novalidate>
           <input type="hidden" name="_subject" value="New Website Enquiry - Frontend Web Studio">
           <div class="form-row">
             <div class="form-group">
               <label for="fullName">Full Name <span>*</span></label>
-              <input type="text" id="fullName" name="fullName" placeholder="Your full name" required>
+              <div class="input-icon">
+                <i class="fa-solid fa-user"></i>
+                <input type="text" id="fullName" name="fullName" placeholder="Your full name" required>
+              </div>
               <span class="error-msg"></span>
             </div>
             <div class="form-group">
               <label for="mobile">Mobile Number <span>*</span></label>
-              <input type="tel" id="mobile" name="mobile" placeholder="10-digit mobile number" required>
+              <div class="input-icon">
+                <i class="fa-solid fa-phone"></i>
+                <input type="tel" id="mobile" name="mobile" placeholder="10-digit mobile number" required>
+              </div>
               <span class="error-msg"></span>
             </div>
           </div>
@@ -625,34 +633,46 @@
           <div class="form-row">
             <div class="form-group">
               <label for="email">Email Address <span>*</span></label>
-              <input type="email" id="email" name="email" placeholder="you@example.com" required>
+              <div class="input-icon">
+                <i class="fa-solid fa-envelope"></i>
+                <input type="email" id="email" name="email" placeholder="you@example.com" required>
+              </div>
               <span class="error-msg"></span>
             </div>
             <div class="form-group">
               <label for="business">Business Name</label>
-              <input type="text" id="business" name="business" placeholder="Your business name">
+              <div class="input-icon">
+                <i class="fa-solid fa-building"></i>
+                <input type="text" id="business" name="business" placeholder="Your business name">
+              </div>
               <span class="error-msg"></span>
             </div>
           </div>
 
           <div class="form-group">
             <label for="requirement">Website Requirement <span>*</span></label>
-            <select id="requirement" name="requirement" required>
-              <option value="" disabled selected>Select a website type</option>
-              <option value="Business Website">Business Website</option>
-              <option value="Portfolio Website">Portfolio Website</option>
-              <option value="Coaching / School Website">Coaching / School Website</option>
-              <option value="Restaurant Website">Restaurant Website</option>
-              <option value="Landing Page">Landing Page</option>
-              <option value="Website Redesign">Website Redesign</option>
-              <option value="Other">Other</option>
-            </select>
+            <div class="input-icon">
+              <i class="fa-solid fa-globe"></i>
+              <select id="requirement" name="requirement" required>
+                <option value="" disabled selected>Select a website type</option>
+                <option value="Business Website">Business Website</option>
+                <option value="Portfolio Website">Portfolio Website</option>
+                <option value="Coaching / School Website">Coaching / School Website</option>
+                <option value="Restaurant Website">Restaurant Website</option>
+                <option value="Landing Page">Landing Page</option>
+                <option value="Website Redesign">Website Redesign</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
             <span class="error-msg"></span>
           </div>
 
           <div class="form-group">
             <label for="message">Message <span>*</span></label>
-            <textarea id="message" name="message" rows="4" placeholder="Tell us about your project..." required></textarea>
+            <div class="input-icon input-icon-top">
+              <i class="fa-solid fa-comment-dots"></i>
+              <textarea id="message" name="message" rows="4" placeholder="Tell us about your project..." required></textarea>
+            </div>
             <span class="error-msg"></span>
           </div>
 
@@ -798,6 +818,6 @@
 <!-- Back to top -->
 <button id="backToTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
 
-<script src="js/main.js?v=3"></script>
+<script src="js/main.js?v=4"></script>
 </body>
 </html>
