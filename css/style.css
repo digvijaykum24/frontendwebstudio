@@ -1772,8 +1772,9 @@ h1,h2,h3,h4,h5,h6{
   .hero-title{ font-size: clamp(1.9rem, 8vw, 2.4rem); }
   .hero-cta{ flex-direction: column; align-items: stretch; }
   .hero-cta .btn{ width: 100%; }
-  .trust-highlights{ display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .trust-highlights li{ justify-content: center; padding: 10px 10px; font-size: 0.78rem; white-space: nowrap; }
+  .trust-highlights{ display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+  .trust-highlights li{ padding: 8px 13px; font-size: 0.76rem; gap: 7px; white-space: nowrap; }
+  .trust-highlights i{ width: 18px; height: 18px; font-size: 0.62rem; }
 
   .hero-photo-stage{ height: 340px; }
   .hero-photo-frame{ width: 220px; }
@@ -1912,7 +1913,6 @@ h1,h2,h3,h4,h5,h6{
 @media (max-width: 380px){
   .container{ padding: 0 14px; }
   .hero-title{ font-size: 1.8rem; }
-  .trust-highlights{ grid-template-columns: 1fr; }
   .why-us-grid{ grid-template-columns: 1fr 1fr; gap: 10px; }
   .feature-card{ padding: 18px 8px; }
   .feature-card h4{ font-size: 0.82rem; }
