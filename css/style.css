@@ -559,6 +559,11 @@ h1,h2,h3,h4,h5,h6{
   0%, 100%{ transform: translateY(0); }
   50%{ transform: translateY(-14px); }
 }
+/* Same float, but keeps a horizontal centering offset (used on mobile). */
+@keyframes floatYCentered{
+  0%, 100%{ transform: translate(-50%, 0); }
+  50%{ transform: translate(-50%, -10px); }
+}
 
 /* ==========================================================================
    ABOUT
@@ -1592,7 +1597,17 @@ h1,h2,h3,h4,h5,h6{
 
   .hero-photo-stage{ height: 340px; }
   .hero-photo-frame{ width: 220px; }
-  .hero-photo-badge{ padding: 9px 16px 9px 9px; gap: 9px; bottom: 4%; }
+  /* On phones the float animation's transform was overriding the badge's
+     translateX(-50%) centering, pushing it off the right edge of the screen.
+     Use a float keyframe that keeps the horizontal centering baked in. */
+  .hero-photo-badge{
+    padding: 9px 16px 9px 9px;
+    gap: 9px;
+    bottom: 4%;
+    left: 50%;
+    max-width: calc(100vw - 36px);
+    animation: floatYCentered 5s ease-in-out infinite;
+  }
   .badge-icon{ width: 32px; height: 32px; font-size: 0.85rem; }
   .hero-photo-badge h4{ font-size: 0.8rem; }
   .hero-photo-badge span{ font-size: 0.68rem; }
