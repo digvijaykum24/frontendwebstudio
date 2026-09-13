@@ -1,0 +1,5 @@
+# Frontend Web Studio - https://frontendwebstudio.com
+User-agent: *
+Allow: /
+
+Sitemap: https://frontendwebstudio.com/sitemap.xml
