@@ -181,63 +181,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* ---------- Pricing Slider (mobile card swipe + dots) ---------- */
-  var pricingGrid = document.querySelector('.pricing-grid');
-  var pricingDots = document.getElementById('pricingDots');
-  if (pricingGrid && pricingDots) {
-    var pricingCards = pricingGrid.querySelectorAll('.pricing-card');
-    var pricingMql = window.matchMedia('(max-width: 640px)');
-
-    function isPricingSliderActive() {
-      return pricingMql.matches;
-    }
-
-    function buildPricingDots() {
-      pricingDots.innerHTML = '';
-      pricingCards.forEach(function (card, i) {
-        var dot = document.createElement('span');
-        if (i === 0) dot.classList.add('active');
-        dot.addEventListener('click', function () {
-          card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-        });
-        pricingDots.appendChild(dot);
-      });
-    }
-
-    function updateActivePricingDot() {
-      var dots = pricingDots.querySelectorAll('span');
-      if (!dots.length) return;
-      var gridRect = pricingGrid.getBoundingClientRect();
-      var gridCenter = gridRect.left + gridRect.width / 2;
-      var closestIndex = 0;
-      var closestDistance = Infinity;
-      pricingCards.forEach(function (card, i) {
-        var cardRect = card.getBoundingClientRect();
-        var cardCenter = cardRect.left + cardRect.width / 2;
-        var distance = Math.abs(gridCenter - cardCenter);
-        if (distance < closestDistance) {
-          closestDistance = distance;
-          closestIndex = i;
-        }
-      });
-      dots.forEach(function (d, i) { d.classList.toggle('active', i === closestIndex); });
-    }
-
-    function syncPricingSlider() {
-      if (isPricingSliderActive() && !pricingDots.children.length) {
-        buildPricingDots();
-      } else if (!isPricingSliderActive() && pricingDots.children.length) {
-        pricingDots.innerHTML = '';
-      }
-    }
-
-    syncPricingSlider();
-    pricingGrid.addEventListener('scroll', function () {
-      if (isPricingSliderActive()) updateActivePricingDot();
-    }, { passive: true });
-    window.addEventListener('resize', syncPricingSlider);
-  }
-
   /* ---------- FAQ Accordion ---------- */
   var faqItems = document.querySelectorAll('.faq-item');
   faqItems.forEach(function (item) {
