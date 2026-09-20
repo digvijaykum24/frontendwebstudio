@@ -431,7 +431,6 @@ h1,h2,h3,h4,h5,h6{
   position: relative;
   padding: 160px 0 100px;
   overflow: hidden;
-  background: linear-gradient(180deg, rgba(21,10,48,0.4) 0%, transparent 60%);
 }
 .hero-bg-glow{
   position: absolute;
@@ -880,6 +879,7 @@ h1,h2,h3,h4,h5,h6{
 /* ==========================================================================
    SERVICES
    ========================================================================== */
+.services{ background: none; }
 .services-grid{
   grid-template-columns: repeat(4, 1fr);
 }
@@ -971,6 +971,7 @@ h1,h2,h3,h4,h5,h6{
 /* ==========================================================================
    PROCESS
    ========================================================================== */
+.process{ background: none; }
 .process-track{
   position: relative;
   display: grid;
@@ -1186,7 +1187,6 @@ h1,h2,h3,h4,h5,h6{
 .portfolio{
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, rgba(29,78,216,0.12) 0%, rgba(6,182,212,0.08) 45%, rgba(20,184,166,0.1) 100%);
 }
 .portfolio-glow-1, .portfolio-glow-2{
   position: absolute;
@@ -1410,9 +1410,6 @@ h1,h2,h3,h4,h5,h6{
    ========================================================================== */
 .cta-section{
   position: relative;
-  background: linear-gradient(120deg, var(--navy) 0%, var(--purple) 32%, var(--blue) 64%, var(--pink) 100%);
-  background-size: 200% 200%;
-  animation: gradientShift 10s ease infinite;
   padding: 90px 0;
   overflow: hidden;
   text-align: center;

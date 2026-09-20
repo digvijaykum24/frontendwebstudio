@@ -91,7 +91,7 @@
         "@id": "https://frontendwebstudio.com/#founder",
         "name": "Digvijay Kumar",
         "jobTitle": "Founder & Web Developer",
-        "image": "https://frontendwebstudio.com/assets/founder-digvijay.png"
+        "image": "https://frontendwebstudio.com/assets/founder-digvijay.webp"
       },
       "contactPoint": {
         "@type": "ContactPoint",
@@ -197,16 +197,20 @@
 }
 </script>
 
+<!-- Hero photo: preloaded since it's the largest above-the-fold (LCP) image -->
+<link rel="preload" as="image" href="assets/founder-digvijay.webp" fetchpriority="high">
+
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<!-- Icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<!-- Icons: loaded non-render-blocking (full icon kit isn't needed for first paint) -->
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
 
 <!-- Styles -->
-<link rel="stylesheet" href="css/style.css?v=13">
+<link rel="stylesheet" href="css/style.css?v=14">
 
 </head>
 <body>
@@ -297,7 +301,7 @@
           <div class="hero-photo-glow" aria-hidden="true"></div>
 
           <div class="hero-photo-frame">
-            <img src="assets/founder-digvijay.png" alt="Digvijay Kumar, Founder of Frontend Web Studio" class="hero-photo" width="1280" height="1536">
+            <img src="assets/founder-digvijay.webp" alt="Digvijay Kumar, Founder of Frontend Web Studio" class="hero-photo" width="720" height="864" fetchpriority="high" decoding="async">
           </div>
 
           <div class="hero-photo-badge float-slow">
