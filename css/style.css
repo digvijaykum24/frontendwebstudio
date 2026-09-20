@@ -17,8 +17,11 @@
   --white: #ffffff;
   --bg-deep: #030f14;       /* page canvas — deep ocean-black */
   --bg-deep-2: #051a22;
-  --surface: #0e2733;       /* card / panel surface */
-  --surface-2: #123342;     /* alt surface, slightly lifted */
+  --surface: rgba(15, 42, 55, 0.62);       /* card / panel surface — glass */
+  --surface-2: rgba(20, 55, 71, 0.68);     /* alt surface, slightly lifted — glass */
+  --surface-solid: #0e2733; /* opaque fallback for surfaces that shouldn't be glass */
+  --glass-blur: blur(20px);
+  --glass-border: rgba(255, 255, 255, 0.1);
   --gray-50: #0b1e28;
   --gray-100: rgba(255,255,255,0.05);
   --gray-200: rgba(255,255,255,0.1);
@@ -35,10 +38,10 @@
   --gradient-rich: linear-gradient(135deg, #fb923c 0%, #14b8a6 45%, #06b6d4 75%, #1d4ed8 100%);
   --gradient-radial: radial-gradient(circle at 30% 20%, rgba(6,182,212,0.2), transparent 60%);
 
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
-  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.35);
-  --shadow-lg: 0 20px 48px rgba(0, 0, 0, 0.45);
-  --shadow-glow: 0 20px 60px rgba(20, 184, 166, 0.35);
+  --shadow-sm: 0 2px 10px -2px rgba(0, 0, 0, 0.28);
+  --shadow-md: 0 12px 32px -6px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 24px 60px -12px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 20px 60px -8px rgba(20, 184, 166, 0.4);
 
   --radius-sm: 10px;
   --radius-md: 16px;
@@ -46,6 +49,7 @@
   --radius-full: 999px;
 
   --transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  --transition-fast: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
   --container-width: 1200px;
 }
 
@@ -186,38 +190,103 @@ h1,h2,h3,h4,h5,h6{
   white-space: nowrap;
 }
 .btn i{ font-size: 0.9em; }
+.btn:active{ transform: scale(0.96); transition: var(--transition-fast); }
 .btn-primary{
   background: var(--gradient-primary);
   color: var(--white);
   box-shadow: 0 8px 24px rgba(37, 99, 235, 0.35);
 }
 .btn-primary:hover{
-  transform: translateY(-3px);
-  box-shadow: 0 14px 32px rgba(20, 184, 166, 0.4);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 16px 40px -6px rgba(20, 184, 166, 0.5);
 }
 .btn-outline{
-  background: transparent;
+  background: rgba(255, 255, 255, 0.02);
   color: var(--navy);
   border: 2px solid var(--gray-200);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
 }
 .btn-outline:hover{
   border-color: var(--blue);
   color: var(--blue);
-  transform: translateY(-3px);
+  background: rgba(56, 189, 248, 0.08);
+  transform: translateY(-3px) scale(1.02);
 }
 .btn-white{
   background: var(--surface);
   color: var(--blue);
   box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
 }
 .btn-white:hover{
-  transform: translateY(-3px);
+  transform: translateY(-3px) scale(1.02);
   box-shadow: 0 14px 32px rgba(0,0,0,0.2);
 }
 .btn-lg{ padding: 16px 34px; font-size: 1rem; }
 .btn-sm{ padding: 10px 20px; font-size: 0.88rem; }
 .btn-full{ width: 100%; }
 .btn-nav{ padding: 10px 22px; font-size: 0.9rem; }
+
+/* ---------- Glass surfaces ----------
+   Frosted-glass treatment for every card/panel that sits on var(--surface),
+   now translucent — the blur is centralized here instead of repeated per
+   component. */
+.trust-highlights li,
+.hero-photo-badge,
+.floating-icon,
+.site-3d-browser,
+.site-3d-float,
+.stat-card,
+.service-card,
+.feature-card,
+.process-step,
+.pricing-card,
+.portfolio-card,
+.tech-card,
+.faq-item,
+.contact-form-wrap,
+.nav-links{
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+}
+
+/* ---------- Animated gradient card outlines ----------
+   A slowly-rotating conic gradient masked down to a thin ring, so every
+   card's outline continuously cycles through the brand colors instead of
+   sitting static. Falls back to a plain (non-animated) gradient ring in
+   browsers without @property support. */
+@property --border-angle{
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+@keyframes border-spin{
+  to{ --border-angle: 360deg; }
+}
+.service-card::after,
+.feature-card::after,
+.stat-card::after,
+.tech-card::after,
+.contact-form-wrap::after,
+.portfolio-card::before,
+.process-step::before,
+.pricing-card::before,
+.faq-item::before{
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: conic-gradient(from var(--border-angle), var(--purple), var(--blue), var(--pink), var(--gold), var(--purple));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  animation: border-spin 5s linear infinite;
+}
+.faq-item{ position: relative; }
 
 /* ==========================================================================
    NAVBAR
@@ -244,9 +313,6 @@ h1,h2,h3,h4,h5,h6{
   height: 78px;
 }
 .brand{ display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-.brand-mark{ display: flex; align-items: center; }
-.brand-mark img{ display: block; height: 38px; width: auto; }
-.footer-brand .brand-mark img{ height: 34px; }
 .brand-text{
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
@@ -341,7 +407,7 @@ h1,h2,h3,h4,h5,h6{
    ========================================================================== */
 #preloader{
   position: fixed; inset: 0;
-  background: var(--surface);
+  background: var(--surface-solid);
   z-index: 9999;
   display: flex;
   align-items: center;
@@ -516,8 +582,6 @@ h1,h2,h3,h4,h5,h6{
   width: 320px;
   aspect-ratio: 4 / 5;
   border-radius: 28px;
-  padding: 8px;
-  background: var(--gradient-primary);
   box-shadow: var(--shadow-lg);
 }
 .hero-photo{
@@ -525,7 +589,7 @@ h1,h2,h3,h4,h5,h6{
   height: 100%;
   object-fit: cover;
   object-position: center top;
-  border-radius: 22px;
+  border-radius: 28px;
   display: block;
   background: var(--gray-100);
 }
@@ -838,7 +902,7 @@ h1,h2,h3,h4,h5,h6{
   z-index: 0;
 }
 .service-card:hover{
-  transform: translateY(-8px);
+  transform: translateY(-8px) scale(1.015);
   box-shadow: var(--shadow-glow);
   border-color: transparent;
 }
@@ -968,12 +1032,15 @@ h1,h2,h3,h4,h5,h6{
   pointer-events: none;
 }
 .pricing-grid{
-  grid-template-columns: 1fr;
-  max-width: 420px;
-  margin: 0 auto;
+  grid-template-columns: repeat(3, 1fr);
   align-items: stretch;
   position: relative;
   z-index: 1;
+}
+.pricing-grid-single{
+  grid-template-columns: 1fr;
+  max-width: 460px;
+  margin: 0 auto;
 }
 .pricing-card{
   background: var(--surface);
@@ -986,7 +1053,7 @@ h1,h2,h3,h4,h5,h6{
   transition: var(--transition);
 }
 .pricing-card:hover{
-  transform: translateY(-8px);
+  transform: translateY(-8px) scale(1.015);
   box-shadow: var(--shadow-lg);
   border-color: transparent;
 }
@@ -1068,6 +1135,40 @@ h1,h2,h3,h4,h5,h6{
 }
 .pricing-card.featured .btn-outline:hover{ background: rgba(255,255,255,0.16); border-color: rgba(255,255,255,0.4); }
 
+/* Swipeable card slider — mobile only (see MOBILE media query below).
+   Hidden by default so tablet/desktop keep the static grid layout. */
+.pricing-swipe-hint{
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--gray-500);
+  margin-top: 14px;
+}
+.pricing-swipe-hint i{ color: var(--blue); font-size: 0.78rem; }
+.pricing-dots{
+  display: none;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  position: relative;
+  z-index: 1;
+}
+.pricing-dots span{
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--gray-200);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.pricing-dots span.active{
+  background: var(--gradient-primary);
+  width: 22px;
+  border-radius: var(--radius-full);
+}
 .pricing-note{
   text-align: center;
   margin-top: 40px;
@@ -1137,7 +1238,7 @@ h1,h2,h3,h4,h5,h6{
 }
 .portfolio-card:hover::after{ left: 130%; }
 .portfolio-card:hover{
-  transform: translateY(-8px);
+  transform: translateY(-8px) scale(1.015);
   box-shadow: var(--shadow-lg);
 }
 .portfolio-thumb{
@@ -1837,18 +1938,10 @@ h1,h2,h3,h4,h5,h6{
   .process-step h4{ grid-column: 2; margin-top: 10px; margin-bottom: 4px; font-size: 1rem; }
   .process-step p{ grid-column: 2; font-size: 0.86rem; }
 
-  /* Pricing stacks vertically on mobile so all three plans are
-     visible without needing to swipe. */
-  .pricing-grid{
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
-    max-width: 460px;
-    margin: 0 auto;
-    padding: 0;
-  }
+  /* Single pricing card — simple centered stack, no swipe slider needed. */
+  .pricing-grid-single{ max-width: none; }
   .pricing-card{ padding: 30px 22px; }
-  .pricing-card.featured{ transform: scale(1); order: -1; }
+  .pricing-card.featured{ transform: scale(1); }
   .pricing-card.featured:hover{ transform: translateY(-8px); }
   .pricing-price .amount{ font-size: 2.2rem; }
 
@@ -1875,7 +1968,7 @@ h1,h2,h3,h4,h5,h6{
   .feature-card{ padding: 18px 8px; }
   .feature-card h4{ font-size: 0.82rem; }
   .hero-photo-frame{ width: 200px; }
-  .pricing-card{ padding: 26px 18px; }
+  .pricing-card{ flex: 0 0 88%; min-width: 88%; padding: 26px 18px; }
   .process-track::before{ left: 41px; }
   .process-step{ padding-left: 18px; }
 }
