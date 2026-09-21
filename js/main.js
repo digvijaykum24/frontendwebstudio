@@ -24,8 +24,6 @@ document.addEventListener('DOMContentLoaded', function () {
       navbar.classList.remove('scrolled');
     }
   }
-  handleNavbarScroll();
-  window.addEventListener('scroll', handleNavbarScroll, { passive: true });
 
   /* ---------- Smooth Scroll for In-Page Links (no #hash in the URL) ---------- */
   var NAVBAR_OFFSET = 90; // navbar height (78px) + a little breathing room
@@ -47,21 +45,27 @@ document.addEventListener('DOMContentLoaded', function () {
     var progress = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
     if (scrollProgress) scrollProgress.style.width = progress + '%';
   }
-  updateScrollProgress();
-  window.addEventListener('scroll', updateScrollProgress, { passive: true });
-  window.addEventListener('resize', updateScrollProgress);
 
   /* ---------- Hero Cursor Glow ---------- */
   var heroSection = document.getElementById('home');
   var cursorGlow = document.getElementById('cursorGlow');
   if (heroSection && cursorGlow && window.matchMedia('(min-width: 993px)').matches) {
+    var glowTicking = false;
+    var glowEvent = null;
     heroSection.addEventListener('mousemove', function (e) {
-      var rect = heroSection.getBoundingClientRect();
-      var x = ((e.clientX - rect.left) / rect.width) * 100;
-      var y = ((e.clientY - rect.top) / rect.height) * 100;
-      cursorGlow.style.setProperty('--glow-x', x + '%');
-      cursorGlow.style.setProperty('--glow-y', y + '%');
-    });
+      glowEvent = e;
+      if (!glowTicking) {
+        glowTicking = true;
+        window.requestAnimationFrame(function () {
+          var rect = heroSection.getBoundingClientRect();
+          var x = ((glowEvent.clientX - rect.left) / rect.width) * 100;
+          var y = ((glowEvent.clientY - rect.top) / rect.height) * 100;
+          cursorGlow.style.setProperty('--glow-x', x + '%');
+          cursorGlow.style.setProperty('--glow-y', y + '%');
+          glowTicking = false;
+        });
+      }
+    }, { passive: true });
   }
 
   /* ---------- Mobile Menu ---------- */
@@ -122,9 +126,6 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   }
-  setActiveLink();
-  window.addEventListener('scroll', setActiveLink, { passive: true });
-
   /* ---------- Scroll Reveal (IntersectionObserver) ---------- */
   var revealEls = document.querySelectorAll('.reveal-up');
   if ('IntersectionObserver' in window) {
@@ -251,16 +252,40 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* ---------- Back To Top ---------- */
   var backToTop = document.getElementById('backToTop');
-  window.addEventListener('scroll', function () {
+  function updateBackToTop() {
     if (window.scrollY > 500) {
       backToTop.classList.add('show');
     } else {
       backToTop.classList.remove('show');
     }
-  }, { passive: true });
+  }
   backToTop.addEventListener('click', function () {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
+
+  /* ---------- Scroll Listener (batched via rAF) ----------
+     Navbar state, scroll progress, active nav link, and the back-to-top
+     button all react to scroll — run them together in a single
+     requestAnimationFrame callback per frame instead of four separate
+     listeners, so scrolling stays smooth instead of doing repeated
+     layout/style work on every scroll event. */
+  var scrollTicking = false;
+  function onScrollUpdates() {
+    handleNavbarScroll();
+    updateScrollProgress();
+    setActiveLink();
+    updateBackToTop();
+    scrollTicking = false;
+  }
+  function requestScrollUpdate() {
+    if (!scrollTicking) {
+      scrollTicking = true;
+      window.requestAnimationFrame(onScrollUpdates);
+    }
+  }
+  window.addEventListener('scroll', requestScrollUpdate, { passive: true });
+  window.addEventListener('resize', updateScrollProgress);
+  onScrollUpdates();
 
   /* ---------- Contact Form Validation + Formspree Submission ---------- */
   var form = document.getElementById('contactForm');
