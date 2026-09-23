@@ -20,7 +20,7 @@
   --surface: rgba(30, 21, 51, 0.62);       /* card / panel surface — glass */
   --surface-2: rgba(38, 27, 64, 0.68);     /* alt surface, slightly lifted — glass */
   --surface-solid: #1a1030; /* opaque fallback for surfaces that shouldn't be glass */
-  --glass-blur: blur(20px);
+  --glass-blur: blur(12px);
   --glass-border: rgba(255, 255, 255, 0.1);
   --gray-50: #150c28;
   --gray-100: rgba(255,255,255,0.05);
@@ -64,7 +64,6 @@ body{
     radial-gradient(circle at 85% 20%, rgba(167, 139, 250,0.14), transparent 45%),
     radial-gradient(circle at 50% 100%, rgba(217, 70, 239,0.14), transparent 50%),
     var(--bg-deep);
-  background-attachment: fixed;
   line-height: 1.65;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -285,6 +284,21 @@ h1,h2,h3,h4,h5,h6{
           mask-composite: exclude;
   pointer-events: none;
   animation: border-spin 5s linear infinite;
+  /* Paused until the card scrolls into view (toggled via IntersectionObserver
+     in main.js) — with dozens of these on the page, running them all at once
+     off-screen is wasted GPU work and makes scrolling feel heavy. */
+  animation-play-state: paused;
+}
+.service-card.in-view::after,
+.feature-card.in-view::after,
+.stat-card.in-view::after,
+.tech-card.in-view::after,
+.contact-form-wrap.in-view::after,
+.portfolio-card.in-view::before,
+.process-step.in-view::before,
+.pricing-card.in-view::before,
+.faq-item.in-view::before{
+  animation-play-state: running;
 }
 .faq-item{ position: relative; }
 
@@ -1798,7 +1812,6 @@ h1,h2,h3,h4,h5,h6{
    RESPONSIVE — TABLET (≤992px)
    ========================================================================== */
 @media (max-width: 992px){
-  body{ background-attachment: scroll; }
   .hero-inner{ grid-template-columns: 1fr; text-align: center; gap: 50px; }
   .hero-subtitle{ margin-left: auto; margin-right: auto; }
   .hero-cta{ justify-content: center; }

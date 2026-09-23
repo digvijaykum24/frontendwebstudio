@@ -143,6 +143,25 @@ document.addEventListener('DOMContentLoaded', function () {
     revealEls.forEach(function (el) { el.classList.add('visible'); });
   }
 
+  /* ---------- Pause off-screen card border animation ----------
+     The animated gradient card outlines only run while a card is
+     actually on screen (toggled via 'in-view'), so scrolling isn't
+     fighting dozens of always-on animations at once. */
+  var animatedCards = document.querySelectorAll(
+    '.service-card, .feature-card, .stat-card, .tech-card, .contact-form-wrap, ' +
+    '.portfolio-card, .process-step, .pricing-card, .faq-item'
+  );
+  if ('IntersectionObserver' in window && animatedCards.length) {
+    var cardObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        entry.target.classList.toggle('in-view', entry.isIntersecting);
+      });
+    }, { rootMargin: '100px 0px' });
+    animatedCards.forEach(function (el) { cardObserver.observe(el); });
+  } else {
+    animatedCards.forEach(function (el) { el.classList.add('in-view'); });
+  }
+
   /* ---------- Animated Stat Counters ---------- */
   var counters = document.querySelectorAll('.counter');
   function animateCounter(el) {
