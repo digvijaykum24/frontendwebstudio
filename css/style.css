@@ -1827,6 +1827,11 @@ h1,h2,h3,h4,h5,h6{
   .services-grid{ grid-template-columns: repeat(2, 1fr); }
   .why-us-grid{ grid-template-columns: repeat(2, 1fr); }
   .portfolio-grid{ grid-template-columns: repeat(2, 1fr); }
+  .portfolio-grid > .portfolio-card:last-child:nth-child(odd){
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: calc(50% - 14px);
+  }
   .tech-grid{ grid-template-columns: repeat(4, 1fr); }
 
   .process-track{ grid-template-columns: repeat(3, 1fr); }
@@ -1895,6 +1900,7 @@ h1,h2,h3,h4,h5,h6{
 
   .portfolio-grid{ grid-template-columns: 1fr; }
   .portfolio-grid.two-projects{ grid-template-columns: 1fr; max-width: 460px; }
+  .portfolio-grid > .portfolio-card:last-child:nth-child(odd){ width: auto; justify-self: stretch; }
   .portfolio-info{ padding: 20px; }
 
   /* Tech stack: 10 items in 3 columns leaves a lonely last card, and stacked
