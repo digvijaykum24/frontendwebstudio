@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 430" width="560" height="430" role="img" aria-label="Responsive website shown on a laptop and a mobile phone">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4f46e5"/>
+      <stop offset="0.5" stop-color="#8b5cf6"/>
+      <stop offset="1" stop-color="#d946ef"/>
+    </linearGradient>
+    <linearGradient id="gSoft" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6366f1"/>
+      <stop offset="1" stop-color="#c026d3"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#8b5cf6" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#8b5cf6" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="laptopScreen"><rect x="54" y="54" width="392" height="242" rx="8"/></clipPath>
+    <clipPath id="phoneScreen"><rect x="410" y="162" width="110" height="226" rx="12"/></clipPath>
+  </defs>
+
+  <ellipse cx="270" cy="220" rx="270" ry="200" fill="url(#glow)"/>
+
+  <!-- Laptop -->
+  <rect x="40" y="40" width="420" height="270" rx="16" fill="#140b26" stroke="url(#g1)" stroke-width="3"/>
+  <rect x="54" y="54" width="392" height="242" rx="8" fill="#0f0820"/>
+  <g clip-path="url(#laptopScreen)">
+    <rect x="54" y="54" width="392" height="26" fill="#1e1238"/>
+    <circle cx="70" cy="67" r="4" fill="#ef4444"/>
+    <circle cx="84" cy="67" r="4" fill="#f59e0b"/>
+    <circle cx="98" cy="67" r="4" fill="#22c55e"/>
+    <rect x="170" y="60" width="160" height="14" rx="7" fill="#ffffff" fill-opacity="0.07"/>
+    <text x="250" y="70" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#a89fc4">frontendwebstudio.com</text>
+
+    <rect x="68" y="90" width="14" height="14" rx="4" fill="url(#g1)"/>
+    <rect x="88" y="94" width="50" height="6" rx="3" fill="#cac0e0"/>
+    <rect x="290" y="95" width="22" height="5" rx="2.5" fill="#6b5e8f"/>
+    <rect x="320" y="95" width="22" height="5" rx="2.5" fill="#6b5e8f"/>
+    <rect x="350" y="95" width="22" height="5" rx="2.5" fill="#6b5e8f"/>
+    <rect x="386" y="89" width="46" height="16" rx="8" fill="url(#g1)"/>
+
+    <rect x="68" y="122" width="170" height="12" rx="4" fill="#f1ecfb"/>
+    <rect x="68" y="140" width="130" height="12" rx="4" fill="url(#g1)"/>
+    <rect x="68" y="162" width="180" height="5" rx="2.5" fill="#6b5e8f"/>
+    <rect x="68" y="172" width="150" height="5" rx="2.5" fill="#6b5e8f"/>
+    <rect x="68" y="188" width="70" height="18" rx="9" fill="url(#g1)"/>
+    <rect x="146" y="188" width="60" height="18" rx="9" fill="none" stroke="#8b5cf6" stroke-width="1.5"/>
+
+    <rect x="280" y="116" width="150" height="96" rx="10" fill="url(#gSoft)"/>
+    <circle cx="320" cy="140" r="10" fill="#ffffff" fill-opacity="0.85"/>
+    <polygon points="290,205 330,162 360,190 380,172 422,205" fill="#ffffff" fill-opacity="0.35"/>
+
+    <g>
+      <rect x="68" y="228" width="113" height="52" rx="8" fill="#1e1238" stroke="#8b5cf6" stroke-opacity="0.35"/>
+      <circle cx="84" cy="244" r="7" fill="url(#g1)"/>
+      <rect x="98" y="240" width="60" height="5" rx="2.5" fill="#cac0e0"/>
+      <rect x="98" y="250" width="44" height="4" rx="2" fill="#6b5e8f"/>
+      <rect x="80" y="264" width="86" height="4" rx="2" fill="#3b2d5c"/>
+    </g>
+    <g>
+      <rect x="193" y="228" width="113" height="52" rx="8" fill="#1e1238" stroke="#8b5cf6" stroke-opacity="0.35"/>
+      <circle cx="209" cy="244" r="7" fill="url(#g1)"/>
+      <rect x="223" y="240" width="60" height="5" rx="2.5" fill="#cac0e0"/>
+      <rect x="223" y="250" width="44" height="4" rx="2" fill="#6b5e8f"/>
+      <rect x="205" y="264" width="86" height="4" rx="2" fill="#3b2d5c"/>
+    </g>
+    <g>
+      <rect x="318" y="228" width="113" height="52" rx="8" fill="#1e1238" stroke="#8b5cf6" stroke-opacity="0.35"/>
+      <circle cx="334" cy="244" r="7" fill="url(#g1)"/>
+      <rect x="348" y="240" width="60" height="5" rx="2.5" fill="#cac0e0"/>
+      <rect x="348" y="250" width="44" height="4" rx="2" fill="#6b5e8f"/>
+      <rect x="330" y="264" width="86" height="4" rx="2" fill="#3b2d5c"/>
+    </g>
+  </g>
+  <rect x="10" y="310" width="480" height="14" rx="7" fill="#2a1b47"/>
+  <rect x="210" y="310" width="80" height="6" rx="3" fill="#1a1030"/>
+
+  <!-- Phone -->
+  <rect x="400" y="150" width="130" height="250" rx="20" fill="#140b26" stroke="url(#g1)" stroke-width="3"/>
+  <rect x="410" y="162" width="110" height="226" rx="12" fill="#0f0820"/>
+  <g clip-path="url(#phoneScreen)">
+    <rect x="445" y="167" width="40" height="6" rx="3" fill="#1e1238"/>
+    <rect x="418" y="182" width="10" height="10" rx="3" fill="url(#g1)"/>
+    <rect x="498" y="183" width="14" height="2" rx="1" fill="#cac0e0"/>
+    <rect x="498" y="187" width="14" height="2" rx="1" fill="#cac0e0"/>
+    <rect x="498" y="191" width="14" height="2" rx="1" fill="#cac0e0"/>
+    <rect x="418" y="202" width="94" height="56" rx="8" fill="url(#gSoft)"/>
+    <circle cx="440" cy="218" r="6" fill="#ffffff" fill-opacity="0.85"/>
+    <polygon points="424,254 452,226 470,242 482,232 506,254" fill="#ffffff" fill-opacity="0.35"/>
+    <rect x="418" y="268" width="80" height="8" rx="3" fill="#f1ecfb"/>
+    <rect x="418" y="282" width="60" height="8" rx="3" fill="url(#g1)"/>
+    <rect x="418" y="298" width="90" height="4" rx="2" fill="#6b5e8f"/>
+    <rect x="418" y="307" width="74" height="4" rx="2" fill="#6b5e8f"/>
+    <rect x="418" y="320" width="54" height="14" rx="7" fill="url(#g1)"/>
+    <rect x="418" y="344" width="94" height="34" rx="6" fill="#1e1238" stroke="#8b5cf6" stroke-opacity="0.35"/>
+    <circle cx="431" cy="361" r="6" fill="url(#g1)"/>
+    <rect x="443" y="356" width="50" height="4" rx="2" fill="#cac0e0"/>
+    <rect x="443" y="364" width="34" height="4" rx="2" fill="#6b5e8f"/>
+  </g>
+
+  <!-- Code badge -->
+  <circle cx="40" cy="40" r="26" fill="url(#g1)"/>
+  <text x="40" y="46" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#ffffff">&lt;/&gt;</text>
+
+  <!-- SEO badge -->
+  <rect x="30" y="346" width="150" height="40" rx="20" fill="#1e1238" stroke="#8b5cf6" stroke-opacity="0.5"/>
+  <circle cx="52" cy="366" r="11" fill="#22c55e"/>
+  <path d="M46.5 366 l4 4 l7 -8" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="72" y="371" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#f1ecfb">SEO Ready</text>
+</svg>

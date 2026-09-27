@@ -201,8 +201,9 @@
 }
 </script>
 
-<!-- Hero photo: preloaded since it's the largest above-the-fold (LCP) image -->
-<link rel="preload" as="image" href="assets/founder-digvijay.webp" fetchpriority="high">
+<!-- Hero background: preloaded since CSS background images are discovered late -->
+<link rel="preload" as="image" href="assets/hero-bg.svg" media="(min-width: 641px)" fetchpriority="high">
+<link rel="preload" as="image" href="assets/hero-bg-mobile.svg" media="(max-width: 640px)" fetchpriority="high">
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -214,7 +215,7 @@
 <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
 
 <!-- Styles -->
-<link rel="stylesheet" href="css/style.min.css?v=19">
+<link rel="stylesheet" href="css/style.min.css?v=22">
 
 </head>
 <body>
@@ -270,8 +271,6 @@
 
   <!-- ============ HERO ============ -->
   <section class="hero" id="home">
-    <div class="hero-bg-glow glow-1"></div>
-    <div class="hero-bg-glow glow-2"></div>
     <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
     <div class="container hero-inner">
       <div class="hero-content reveal-up">
@@ -299,30 +298,6 @@
           <li><i class="fa-solid fa-circle-check"></i> SEO Friendly</li>
         </ul>
       </div>
-
-      <div class="hero-visual reveal-up delay-1">
-        <div class="hero-photo-stage">
-          <div class="hero-photo-glow" aria-hidden="true"></div>
-
-          <div class="hero-photo-frame">
-            <img src="assets/founder-digvijay.webp" alt="Digvijay Kumar, Founder of Frontend Web Studio" class="hero-photo" width="720" height="864" fetchpriority="high" decoding="async">
-          </div>
-
-          <div class="hero-photo-badge float-slow">
-            <div class="badge-icon"><i class="fa-solid fa-code"></i></div>
-            <div>
-              <h4>Digvijay Kumar</h4>
-              <span>Founder &amp; Web Developer</span>
-            </div>
-          </div>
-
-          <!-- Floating tech icons -->
-          <div class="floating-icon icon-1 float-med"><i class="fa-brands fa-html5"></i></div>
-          <div class="floating-icon icon-2 float-slow"><i class="fa-brands fa-css3-alt"></i></div>
-          <div class="floating-icon icon-3 float-fast"><i class="fa-brands fa-js"></i></div>
-          <div class="floating-icon icon-4 float-med"><i class="fa-brands fa-react"></i></div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -330,38 +305,8 @@
   <section class="about section" id="about">
     <div class="container about-grid">
       <div class="about-visual reveal-up">
-        <div class="site-3d-stage">
-          <div class="site-3d-card" id="site3dCard">
-            <div class="site-3d-browser">
-              <div class="browser-bar">
-                <span class="dot dot-red"></span>
-                <span class="dot dot-yellow"></span>
-                <span class="dot dot-green"></span>
-                <div class="browser-url"><i class="fa-solid fa-lock"></i> frontendwebstudio.com</div>
-              </div>
-              <div class="browser-body">
-                <div class="site-nav"></div>
-                <div class="site-hero-row">
-                  <div class="site-hero-text">
-                    <span class="site-line line-lg"></span>
-                    <span class="site-line line-md"></span>
-                    <span class="site-btn"></span>
-                  </div>
-                  <div class="site-hero-art"></div>
-                </div>
-                <div class="site-cards-row">
-                  <div class="site-mini-card"></div>
-                  <div class="site-mini-card"></div>
-                  <div class="site-mini-card"></div>
-                </div>
-              </div>
-            </div>
-
-            <div class="site-3d-float float-badge" aria-hidden="true"><i class="fa-solid fa-code"></i></div>
-            <div class="site-3d-float float-tag" aria-hidden="true"><i class="fa-solid fa-mobile-screen-button"></i> Responsive</div>
-            <div class="site-3d-float float-check" aria-hidden="true"><i class="fa-solid fa-circle-check"></i> Live Site</div>
-          </div>
-          <div class="site-3d-glow" aria-hidden="true"></div>
+        <div class="about-image">
+          <img src="assets/about-website.svg" alt="Responsive website design shown on a laptop and a mobile phone" width="560" height="430" loading="lazy" decoding="async">
         </div>
       </div>
 
@@ -572,7 +517,7 @@
             <p class="pricing-tagline">Everything you need, for portfolios, businesses &amp; institutes</p>
           </div>
           <div class="pricing-price">
-            <span class="currency">₹</span><span class="amount">6,999</span>
+            <span class="currency">₹</span><span class="amount">4,999</span>
           </div>
           <p class="pricing-billed">One-time payment</p>
           <ul class="pricing-features">
