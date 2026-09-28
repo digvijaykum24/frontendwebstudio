@@ -789,10 +789,11 @@ h1,h2,h3,h4,h5,h6{
   position: relative;
   z-index: 1;
 }
-.pricing-grid-single{
-  grid-template-columns: 1fr;
-  max-width: 460px;
+.pricing-grid-two{
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 920px;
   margin: 0 auto;
+  gap: 32px;
 }
 .pricing-card{
   background: var(--surface);
@@ -931,6 +932,17 @@ h1,h2,h3,h4,h5,h6{
 }
 .pricing-note a{ color: var(--blue); font-weight: 600; }
 .pricing-note a:hover{ text-decoration: underline; }
+.pricing-fineprint{
+  max-width: 720px;
+  margin: 36px auto 0;
+  text-align: center;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--gray-400);
+  position: relative;
+  z-index: 1;
+}
+
 
 /* ==========================================================================
    PORTFOLIO
@@ -1566,7 +1578,7 @@ h1,h2,h3,h4,h5,h6{
   .process-line{ display: none; }
 
   .pricing-grid{ grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; }
-  .pricing-card.featured{ transform: scale(1); order: -1; }
+  .pricing-card.featured{ transform: scale(1); }
   .pricing-card.featured:hover{ transform: translateY(-8px); }
 
   .contact-grid{ grid-template-columns: 1fr; gap: 48px; }
@@ -1675,7 +1687,27 @@ h1,h2,h3,h4,h5,h6{
   .process-step p{ grid-column: 2; font-size: 0.86rem; }
 
   /* Single pricing card — simple centered stack, no swipe slider needed. */
-  .pricing-grid-single{ max-width: none; }
+  /* Pricing becomes a swipeable slider: each card snaps to center, with a
+     peek of the next one. Top padding leaves room for the "Most Popular"
+     badge, which would otherwise be clipped by the horizontal scroller. */
+  .pricing-grid{
+    display: flex;
+    grid-template-columns: none;
+    max-width: none;
+    margin: 0 -18px;
+    padding: 22px 18px 18px;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0 18px;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+  }
+  .pricing-grid::-webkit-scrollbar{ display: none; }
+  .pricing-grid > .pricing-card{ flex: 0 0 86%; scroll-snap-align: center; }
+  .pricing-swipe-hint{ display: flex; }
+  .pricing-dots{ display: flex; }
   .pricing-card{ padding: 30px 22px; }
   .pricing-card.featured{ transform: scale(1); }
   .pricing-card.featured:hover{ transform: translateY(-8px); }
@@ -1703,7 +1735,8 @@ h1,h2,h3,h4,h5,h6{
   .why-us-grid{ grid-template-columns: 1fr 1fr; gap: 10px; }
   .feature-card{ padding: 18px 8px; }
   .feature-card h4{ font-size: 0.82rem; }
-  .pricing-card{ flex: 0 0 88%; min-width: 88%; padding: 26px 18px; }
+  .pricing-card{ padding: 26px 18px; }
+  .pricing-grid{ margin: 0 -14px; padding: 22px 14px 18px; scroll-padding: 0 14px; }
   .process-track::before{ left: 41px; }
   .process-step{ padding-left: 18px; }
 }

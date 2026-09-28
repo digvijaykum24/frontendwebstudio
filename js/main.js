@@ -218,7 +218,10 @@ document.addEventListener('DOMContentLoaded', function () {
         var dot = document.createElement('span');
         if (i === 0) dot.classList.add('active');
         dot.addEventListener('click', function () {
-          card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+          pricingGrid.scrollTo({
+            left: card.offsetLeft - (pricingGrid.clientWidth - card.offsetWidth) / 2,
+            behavior: 'smooth'
+          });
         });
         pricingDots.appendChild(dot);
       });

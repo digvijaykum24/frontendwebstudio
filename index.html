@@ -215,7 +215,7 @@
 <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
 
 <!-- Styles -->
-<link rel="stylesheet" href="css/style.min.css?v=22">
+<link rel="stylesheet" href="css/style.min.css?v=25">
 
 </head>
 <body>
@@ -509,32 +509,60 @@
         <p class="section-text center">Choose a package that fits your business. No hidden costs, no surprises.</p>
       </div>
 
-      <div class="grid pricing-grid pricing-grid-single">
-        <div class="pricing-card featured reveal-up">
-          <span class="pricing-badge">All-Inclusive</span>
+      <div class="grid pricing-grid pricing-grid-two">
+        <div class="pricing-card reveal-up">
           <div class="pricing-head">
-            <span class="pricing-plan">Starter</span>
-            <p class="pricing-tagline">Everything you need, for portfolios, businesses &amp; institutes</p>
+            <span class="pricing-plan">Starter Website</span>
+            <p class="pricing-tagline">Professional online presence for small businesses</p>
           </div>
           <div class="pricing-price">
             <span class="currency">₹</span><span class="amount">4,999</span>
           </div>
           <p class="pricing-billed">One-time payment</p>
           <ul class="pricing-features">
-            <li><i class="fa-solid fa-circle-check"></i> Unlimited pages</li>
-            <li><i class="fa-solid fa-circle-check"></i> Fully responsive design (mobile, tablet &amp; desktop)</li>
-            <li><i class="fa-solid fa-circle-check"></i> Advanced UI/UX design</li>
-            <li><i class="fa-solid fa-circle-check"></i> Advanced SEO &amp; performance optimization</li>
-            <li><i class="fa-solid fa-circle-check"></i> Contact form &amp; enquiry integration</li>
-            <li><i class="fa-solid fa-circle-check"></i> Gallery integration</li>
-            <li><i class="fa-solid fa-circle-check"></i> Custom design &amp; animations</li>
-            <li><i class="fa-solid fa-circle-check"></i> E-commerce / booking ready</li>
-            <li><i class="fa-solid fa-circle-check"></i> 5 free revisions</li>
-            <li><i class="fa-solid fa-circle-check"></i> 3 months free support</li>
+            <li><i class="fa-solid fa-circle-check"></i> Professional website pages</li>
+            <li><i class="fa-solid fa-circle-check"></i> Responsive design for mobile, tablet &amp; desktop</li>
+            <li><i class="fa-solid fa-circle-check"></i> Custom UI/UX design</li>
+            <li><i class="fa-solid fa-circle-check"></i> Contact / enquiry form</li>
+            <li><i class="fa-solid fa-circle-check"></i> Google Maps integration</li>
+            <li><i class="fa-solid fa-circle-check"></i> Gallery section</li>
+            <li><i class="fa-solid fa-circle-check"></i> Basic SEO setup</li>
+            <li><i class="fa-solid fa-circle-check"></i> Social media icon links</li>
+            <li><i class="fa-solid fa-circle-check"></i> Domain setup assistance</li>
+            <li><i class="fa-solid fa-circle-check"></i> Hosting setup assistance</li>
+            <li><i class="fa-solid fa-circle-check"></i> 6 months free service</li>
           </ul>
-          <a href="#contact" class="btn btn-primary btn-full">Choose Plan</a>
+          <a href="#contact" class="btn btn-outline btn-full">Choose Starter</a>
+        </div>
+
+        <div class="pricing-card featured reveal-up delay-1">
+          <span class="pricing-badge">Most Popular</span>
+          <div class="pricing-head">
+            <span class="pricing-plan">Business Website</span>
+            <p class="pricing-tagline">Website + database + ordering + business management</p>
+          </div>
+          <div class="pricing-price">
+            <span class="currency">₹</span><span class="amount">14,999</span>
+          </div>
+          <p class="pricing-billed">One-time payment</p>
+          <ul class="pricing-features">
+            <li><i class="fa-solid fa-circle-check"></i> Everything included in Starter Website</li>
+            <li><i class="fa-solid fa-circle-check"></i> Menu / product catalogue</li>
+            <li><i class="fa-solid fa-circle-check"></i> Google Search Console setup</li>
+            <li><i class="fa-solid fa-circle-check"></i> Admin panel</li>
+            <li><i class="fa-solid fa-circle-check"></i> Supabase database</li>
+            <li><i class="fa-solid fa-circle-check"></i> Online ordering</li>
+            <li><i class="fa-solid fa-circle-check"></i> Custom business features</li>
+            <li><i class="fa-solid fa-circle-check"></i> 1 year free service</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary btn-full">Choose Business</a>
         </div>
       </div>
+
+      <p class="pricing-swipe-hint" aria-hidden="true"><i class="fa-solid fa-arrows-left-right"></i> Swipe to compare plans</p>
+      <div class="pricing-dots" id="pricingDots" aria-hidden="true"></div>
+
+      <p class="pricing-fineprint reveal-up">Domain registration, hosting plan fees and third-party service charges may be billed separately unless included in your quotation. Custom features depend on project requirements.</p>
 
       <p class="pricing-note reveal-up">Need something custom? <a href="#contact">Contact us</a> for a tailored quote.</p>
     </div>
@@ -999,6 +1027,6 @@
 <!-- Back to top -->
 <button id="backToTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
 
-<script src="js/main.min.js?v=16"></script>
+<script src="js/main.min.js?v=17"></script>
 </body>
 </html>
