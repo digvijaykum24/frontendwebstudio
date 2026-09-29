@@ -247,57 +247,6 @@ h1,h2,h3,h4,h5,h6{
   -webkit-backdrop-filter: var(--glass-blur);
 }
 
-/* ---------- Animated gradient card outlines ----------
-   A slowly-rotating conic gradient masked down to a thin ring, so every
-   card's outline continuously cycles through the brand colors instead of
-   sitting static. Falls back to a plain (non-animated) gradient ring in
-   browsers without @property support. */
-@property --border-angle{
-  syntax: '<angle>';
-  inherits: false;
-  initial-value: 0deg;
-}
-@keyframes border-spin{
-  to{ --border-angle: 360deg; }
-}
-.service-card::after,
-.feature-card::after,
-.stat-card::after,
-.tech-card::after,
-.contact-form-wrap::after,
-.portfolio-card::before,
-.process-step::before,
-.pricing-card::before,
-.faq-item::before{
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1.5px;
-  background: conic-gradient(from var(--border-angle), var(--purple), var(--blue), var(--pink), var(--gold), var(--purple));
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-          mask-composite: exclude;
-  pointer-events: none;
-  animation: border-spin 5s linear infinite;
-  /* Paused until the card scrolls into view (toggled via IntersectionObserver
-     in main.js) — with dozens of these on the page, running them all at once
-     off-screen is wasted GPU work and makes scrolling feel heavy. */
-  animation-play-state: paused;
-}
-.service-card.in-view::after,
-.feature-card.in-view::after,
-.stat-card.in-view::after,
-.tech-card.in-view::after,
-.contact-form-wrap.in-view::after,
-.portfolio-card.in-view::before,
-.process-step.in-view::before,
-.pricing-card.in-view::before,
-.faq-item.in-view::before{
-  animation-play-state: running;
-}
-.faq-item{ position: relative; }
-
 /* ==========================================================================
    NAVBAR
    ========================================================================== */
@@ -425,6 +374,7 @@ h1,h2,h3,h4,h5,h6{
   transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 #preloader.hidden{ opacity: 0; visibility: hidden; }
+#preloader.hidden .loader-ring{ animation: none; }
 .loader-ring{
   width: 46px; height: 46px;
   border: 4px solid var(--gray-200);
