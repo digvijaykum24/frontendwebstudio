@@ -3,18 +3,6 @@
    ========================================================================== */
 document.addEventListener('DOMContentLoaded', function () {
 
-  /* ---------- Preloader ---------- */
-  var preloader = document.getElementById('preloader');
-  window.addEventListener('load', function () {
-    if (preloader) {
-      setTimeout(function () { preloader.classList.add('hidden'); }, 250);
-    }
-  });
-  // Fallback in case 'load' already fired or is delayed
-  setTimeout(function () {
-    if (preloader) preloader.classList.add('hidden');
-  }, 1200);
-
   /* ---------- Sticky Navbar ---------- */
   var navbar = document.getElementById('navbar');
   function handleNavbarScroll() {
@@ -43,29 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function updateScrollProgress() {
     var docHeight = document.documentElement.scrollHeight - window.innerHeight;
     var progress = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
-    if (scrollProgress) scrollProgress.style.width = progress + '%';
-  }
-
-  /* ---------- Hero Cursor Glow ---------- */
-  var heroSection = document.getElementById('home');
-  var cursorGlow = document.getElementById('cursorGlow');
-  if (heroSection && cursorGlow && window.matchMedia('(min-width: 993px)').matches) {
-    var glowTicking = false;
-    var glowEvent = null;
-    heroSection.addEventListener('mousemove', function (e) {
-      glowEvent = e;
-      if (!glowTicking) {
-        glowTicking = true;
-        window.requestAnimationFrame(function () {
-          var rect = heroSection.getBoundingClientRect();
-          var x = ((glowEvent.clientX - rect.left) / rect.width) * 100;
-          var y = ((glowEvent.clientY - rect.top) / rect.height) * 100;
-          cursorGlow.style.setProperty('--glow-x', x + '%');
-          cursorGlow.style.setProperty('--glow-y', y + '%');
-          glowTicking = false;
-        });
-      }
-    }, { passive: true });
+    if (scrollProgress) scrollProgress.style.transform = 'scaleX(' + (progress / 100) + ')';
   }
 
   /* ---------- Mobile Menu ---------- */
@@ -124,61 +90,6 @@ document.addEventListener('DOMContentLoaded', function () {
       if (link.getAttribute('href') === '#' + currentId) {
         link.classList.add('active');
       }
-    });
-  }
-  /* ---------- Scroll Reveal (IntersectionObserver) ---------- */
-  var revealEls = document.querySelectorAll('.reveal-up');
-  if ('IntersectionObserver' in window) {
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
-    revealEls.forEach(function (el) { observer.observe(el); });
-  } else {
-    revealEls.forEach(function (el) { el.classList.add('visible'); });
-  }
-
-  /* ---------- Animated Stat Counters ---------- */
-  var counters = document.querySelectorAll('.counter');
-  function animateCounter(el) {
-    var target = parseInt(el.getAttribute('data-target'), 10) || 0;
-    var suffix = el.getAttribute('data-suffix') || '';
-    var duration = 1400;
-    var startTime = null;
-
-    function step(timestamp) {
-      if (!startTime) startTime = timestamp;
-      var progress = Math.min((timestamp - startTime) / duration, 1);
-      var eased = 1 - Math.pow(1 - progress, 3);
-      var value = Math.floor(eased * target);
-      el.textContent = value + suffix;
-      if (progress < 1) {
-        window.requestAnimationFrame(step);
-      } else {
-        el.textContent = target + suffix;
-      }
-    }
-    window.requestAnimationFrame(step);
-  }
-
-  if (counters.length && 'IntersectionObserver' in window) {
-    var counterObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          animateCounter(entry.target);
-          counterObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.5 });
-    counters.forEach(function (el) { counterObserver.observe(el); });
-  } else {
-    counters.forEach(function (el) {
-      el.textContent = (el.getAttribute('data-target') || '0') + (el.getAttribute('data-suffix') || '');
     });
   }
 

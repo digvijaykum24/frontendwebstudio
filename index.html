@@ -201,9 +201,6 @@
 }
 </script>
 
-<!-- Hero background: preloaded since CSS background images are discovered late -->
-<link rel="preload" as="image" href="assets/hero-bg.svg" media="(min-width: 641px)" fetchpriority="high">
-<link rel="preload" as="image" href="assets/hero-bg-mobile.svg" media="(max-width: 640px)" fetchpriority="high">
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -215,13 +212,10 @@
 <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
 
 <!-- Styles -->
-<link rel="stylesheet" href="css/style.min.css?v=27">
+<link rel="stylesheet" href="css/style.min.css?v=38">
 
 </head>
 <body>
-
-<!-- ============ PRELOADER (subtle) ============ -->
-<div id="preloader" aria-hidden="true"><div class="loader-ring"></div></div>
 
 <!-- ============ SCROLL PROGRESS BAR ============ -->
 <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
@@ -271,9 +265,8 @@
 
   <!-- ============ HERO ============ -->
   <section class="hero" id="home">
-    <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
     <div class="container hero-inner">
-      <div class="hero-content reveal-up">
+      <div class="hero-content">
         <div class="pill-badge">
           <span class="dot-pulse"></span> Trusted Web Development Studio in Patna, Bihar
         </div>
@@ -304,13 +297,13 @@
   <!-- ============ ABOUT ============ -->
   <section class="about section" id="about">
     <div class="container about-grid">
-      <div class="about-visual reveal-up">
+      <div class="about-visual">
         <div class="about-image">
           <img src="assets/about-website.svg" alt="Responsive website design shown on a laptop and a mobile phone" width="560" height="430" loading="lazy" decoding="async">
         </div>
       </div>
 
-      <div class="about-content reveal-up delay-1">
+      <div class="about-content">
         <span class="eyebrow">About Us</span>
         <h2 class="section-title">About <span class="text-gradient">Frontend Web Studio</span> — Web Design Company in Patna, Bihar</h2>
         <p class="section-text">
@@ -328,7 +321,7 @@
           </div>
           <div class="stat-card">
             <div class="stat-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
-            <h3><span class="counter" data-target="100" data-suffix="%">0</span></h3>
+            <h3><span class="counter-static">100%</span></h3>
             <p>Responsive Design</p>
           </div>
           <div class="stat-card">
@@ -347,51 +340,51 @@
   </section>
 
   <!-- ============ SERVICES ============ -->
-  <section class="services section section-alt" id="services">
+  <section class="services section" id="services">
     <div class="container">
-      <div class="section-head reveal-up">
+      <div class="section-head">
         <span class="eyebrow center">What We Offer</span>
         <h2 class="section-title center">Our <span class="text-gradient">Services</span> in Patna, Bihar</h2>
         <p class="section-text center">End-to-end web design &amp; development solutions tailored to businesses in Patna, Bihar and across India.</p>
       </div>
 
       <div class="grid services-grid">
-        <div class="service-card reveal-up">
+        <div class="service-card">
           <div class="service-icon"><i class="fa-solid fa-briefcase"></i></div>
           <h3>Business Websites</h3>
           <p>Professional websites designed to build your online presence.</p>
         </div>
-        <div class="service-card reveal-up delay-1">
+        <div class="service-card">
           <div class="service-icon"><i class="fa-solid fa-id-badge"></i></div>
           <h3>Portfolio Websites</h3>
           <p>Modern personal and professional portfolio websites.</p>
         </div>
-        <div class="service-card reveal-up delay-2">
+        <div class="service-card">
           <div class="service-icon"><i class="fa-solid fa-graduation-cap"></i></div>
           <h3>Coaching &amp; School Websites</h3>
           <p>Professional websites for coaching institutes, schools, and educational organizations.</p>
         </div>
-        <div class="service-card reveal-up">
+        <div class="service-card">
           <div class="service-icon"><i class="fa-solid fa-utensils"></i></div>
           <h3>Restaurant Websites</h3>
           <p>Beautiful restaurant websites with menus, contact details, and online enquiry features.</p>
         </div>
-        <div class="service-card reveal-up delay-1">
+        <div class="service-card">
           <div class="service-icon"><i class="fa-solid fa-bullseye"></i></div>
           <h3>Landing Pages</h3>
           <p>High-converting landing pages for products and services.</p>
         </div>
-        <div class="service-card reveal-up delay-2">
+        <div class="service-card">
           <div class="service-icon"><i class="fa-solid fa-arrows-rotate"></i></div>
           <h3>Website Redesign</h3>
           <p>Transform old websites into modern and professional designs.</p>
         </div>
-        <div class="service-card reveal-up">
+        <div class="service-card">
           <div class="service-icon"><i class="fa-solid fa-mobile-screen"></i></div>
           <h3>Mobile Responsive Design</h3>
           <p>Websites optimized for mobile, tablet, laptop, and desktop.</p>
         </div>
-        <div class="service-card reveal-up delay-1">
+        <div class="service-card">
           <div class="service-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
           <h3>Website Maintenance</h3>
           <p>Support and maintenance to keep your website updated and running smoothly.</p>
@@ -403,42 +396,42 @@
   <!-- ============ WHY CHOOSE US ============ -->
   <section class="why-us section" id="why-us">
     <div class="container">
-      <div class="section-head reveal-up">
+      <div class="section-head">
         <span class="eyebrow center">Our Advantage</span>
         <h2 class="section-title center">Why Choose <span class="text-gradient">Frontend Web Studio?</span></h2>
         <p class="section-text center">We combine design, technology, and strategy to deliver results.</p>
       </div>
 
       <div class="grid why-us-grid">
-        <div class="feature-card reveal-up">
+        <div class="feature-card">
           <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
           <h4>Fast &amp; Modern Websites</h4>
         </div>
-        <div class="feature-card reveal-up delay-1">
+        <div class="feature-card">
           <div class="feature-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
           <h4>100% Mobile Responsive</h4>
         </div>
-        <div class="feature-card reveal-up delay-2">
+        <div class="feature-card">
           <div class="feature-icon"><i class="fa-solid fa-palette"></i></div>
           <h4>Attractive UI/UX Design</h4>
         </div>
-        <div class="feature-card reveal-up delay-3">
+        <div class="feature-card">
           <div class="feature-icon"><i class="fa-solid fa-rocket"></i></div>
           <h4>SEO Friendly Structure</h4>
         </div>
-        <div class="feature-card reveal-up">
+        <div class="feature-card">
           <div class="feature-icon"><i class="fa-solid fa-laptop-code"></i></div>
           <h4>Modern Web Technologies</h4>
         </div>
-        <div class="feature-card reveal-up delay-1">
+        <div class="feature-card">
           <div class="feature-icon"><i class="fa-solid fa-handshake-angle"></i></div>
           <h4>Client-Focused Approach</h4>
         </div>
-        <div class="feature-card reveal-up delay-2">
+        <div class="feature-card">
           <div class="feature-icon"><i class="fa-solid fa-toolbox"></i></div>
           <h4>Website Support</h4>
         </div>
-        <div class="feature-card reveal-up delay-3">
+        <div class="feature-card">
           <div class="feature-icon"><i class="fa-solid fa-sack-dollar"></i></div>
           <h4>Affordable Pricing</h4>
         </div>
@@ -449,7 +442,7 @@
   <!-- ============ AREAS WE SERVE (Local SEO) ============ -->
   <section class="areas-served section" id="areas-served">
     <div class="container">
-      <div class="section-head reveal-up">
+      <div class="section-head">
         <span class="eyebrow center">Local &amp; Beyond</span>
         <h2 class="section-title center">Website Designer in <span class="text-gradient">Patna, Bihar</span></h2>
         <p class="section-text center">
@@ -460,9 +453,9 @@
   </section>
 
   <!-- ============ PROCESS ============ -->
-  <section class="process section section-alt" id="process">
+  <section class="process section" id="process">
     <div class="container">
-      <div class="section-head reveal-up">
+      <div class="section-head">
         <span class="eyebrow center">How We Work</span>
         <h2 class="section-title center">Our <span class="text-gradient">Process</span></h2>
         <p class="section-text center">A simple, transparent process from idea to launch.</p>
@@ -470,27 +463,27 @@
 
       <div class="process-track">
         <div class="process-line" aria-hidden="true"></div>
-        <div class="process-step reveal-up">
+        <div class="process-step">
           <div class="step-number">01</div>
           <h4>Discuss</h4>
           <p>Understand your business and website requirements.</p>
         </div>
-        <div class="process-step reveal-up delay-1">
+        <div class="process-step">
           <div class="step-number">02</div>
           <h4>Design</h4>
           <p>Create a modern and attractive website design.</p>
         </div>
-        <div class="process-step reveal-up delay-2">
+        <div class="process-step">
           <div class="step-number">03</div>
           <h4>Develop</h4>
           <p>Build a fast, responsive, and professional website.</p>
         </div>
-        <div class="process-step reveal-up delay-3">
+        <div class="process-step">
           <div class="step-number">04</div>
           <h4>Review</h4>
           <p>Make improvements based on feedback.</p>
         </div>
-        <div class="process-step reveal-up delay-4">
+        <div class="process-step">
           <div class="step-number">05</div>
           <h4>Launch</h4>
           <p>Publish your website and make it available online.</p>
@@ -501,16 +494,15 @@
 
   <!-- ============ PRICING ============ -->
   <section class="pricing section" id="pricing">
-    <div class="pricing-glow" aria-hidden="true"></div>
     <div class="container">
-      <div class="section-head reveal-up">
+      <div class="section-head">
         <span class="eyebrow center">Pricing Plans</span>
         <h2 class="section-title center">Simple, <span class="text-gradient">Transparent Pricing</span></h2>
         <p class="section-text center">Choose a package that fits your business. No hidden costs, no surprises.</p>
       </div>
 
       <div class="grid pricing-grid pricing-grid-two">
-        <div class="pricing-card reveal-up">
+        <div class="pricing-card">
           <div class="pricing-head">
             <span class="pricing-plan">Starter Website</span>
             <p class="pricing-tagline">Professional online presence for small businesses</p>
@@ -535,7 +527,7 @@
           <a href="#contact" class="btn btn-outline btn-full">Choose Starter</a>
         </div>
 
-        <div class="pricing-card featured reveal-up delay-1">
+        <div class="pricing-card featured">
           <span class="pricing-badge">Most Popular</span>
           <div class="pricing-head">
             <span class="pricing-plan">Business Website</span>
@@ -562,18 +554,16 @@
       <p class="pricing-swipe-hint" aria-hidden="true"><i class="fa-solid fa-arrows-left-right"></i> Swipe to compare plans</p>
       <div class="pricing-dots" id="pricingDots" aria-hidden="true"></div>
 
-      <p class="pricing-fineprint reveal-up">Domain registration, hosting plan fees and third-party service charges may be billed separately unless included in your quotation. Custom features depend on project requirements.</p>
+      <p class="pricing-fineprint">Domain registration, hosting plan fees and third-party service charges may be billed separately unless included in your quotation. Custom features depend on project requirements.</p>
 
-      <p class="pricing-note reveal-up">Need something custom? <a href="#contact">Contact us</a> for a tailored quote.</p>
+      <p class="pricing-note">Need something custom? <a href="#contact">Contact us</a> for a tailored quote.</p>
     </div>
   </section>
 
   <!-- ============ PORTFOLIO ============ -->
   <section class="portfolio section" id="portfolio">
-    <div class="portfolio-glow-1" aria-hidden="true"></div>
-    <div class="portfolio-glow-2" aria-hidden="true"></div>
     <div class="container">
-      <div class="section-head reveal-up">
+      <div class="section-head">
         <span class="eyebrow center">Our Work</span>
         <h2 class="section-title center">Our Recent <span class="text-gradient">Projects</span></h2>
         <p class="section-text center">A glimpse at what we've built for our clients.</p>
@@ -582,26 +572,26 @@
       <div class="grid portfolio-grid">
 
         <!-- Real Project -->
-        <article class="portfolio-card reveal-up">
+        <article class="portfolio-card">
           <div class="portfolio-thumb thumb-1">
             <svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg">
-              <rect width="400" height="260" fill="#0f172a"/>
-              <rect x="0" y="0" width="400" height="34" fill="#1e293b"/>
+              <rect width="400" height="260" fill="#150c2b"/>
+              <rect x="0" y="0" width="400" height="34" fill="#1e1238"/>
               <circle cx="18" cy="17" r="5" fill="#ef4444"/>
               <circle cx="36" cy="17" r="5" fill="#f59e0b"/>
               <circle cx="54" cy="17" r="5" fill="#22c55e"/>
-              <rect x="20" y="54" width="150" height="16" rx="4" fill="#60a5fa"/>
-              <rect x="20" y="80" width="220" height="10" rx="4" fill="#94a3b8"/>
-              <rect x="20" y="98" width="180" height="10" rx="4" fill="#64748b"/>
+              <rect x="20" y="54" width="150" height="16" rx="4" fill="#a78bfa"/>
+              <rect x="20" y="80" width="220" height="10" rx="4" fill="#cac0e0"/>
+              <rect x="20" y="98" width="180" height="10" rx="4" fill="#6b5e8f"/>
               <rect x="20" y="122" width="110" height="34" rx="8" fill="url(#pg1)"/>
               <defs><linearGradient id="pg1" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#4f46e5"/><stop offset="1" stop-color="#d946ef"/></linearGradient></defs>
-              <rect x="230" y="54" width="150" height="120" rx="10" fill="#1e293b"/>
-              <circle cx="305" cy="95" r="24" fill="#334155"/>
-              <rect x="255" y="130" width="100" height="8" rx="4" fill="#475569"/>
-              <rect x="265" y="144" width="80" height="6" rx="3" fill="#334155"/>
-              <rect x="20" y="180" width="110" height="60" rx="8" fill="#1e293b"/>
-              <rect x="140" y="180" width="110" height="60" rx="8" fill="#1e293b"/>
-              <rect x="260" y="180" width="120" height="60" rx="8" fill="#1e293b"/>
+              <rect x="230" y="54" width="150" height="120" rx="10" fill="#1e1238"/>
+              <circle cx="305" cy="95" r="24" fill="#2a1b47"/>
+              <rect x="255" y="130" width="100" height="8" rx="4" fill="#3b2d5c"/>
+              <rect x="265" y="144" width="80" height="6" rx="3" fill="#2a1b47"/>
+              <rect x="20" y="180" width="110" height="60" rx="8" fill="#1e1238"/>
+              <rect x="140" y="180" width="110" height="60" rx="8" fill="#1e1238"/>
+              <rect x="260" y="180" width="120" height="60" rx="8" fill="#1e1238"/>
             </svg>
             <div class="portfolio-overlay">
               <a href="https://www.revolutionclasses.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">View Project <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
@@ -621,7 +611,7 @@
         </article>
 
         <!-- Real Project -->
-        <article class="portfolio-card reveal-up delay-1">
+        <article class="portfolio-card">
           <div class="portfolio-thumb thumb-chatkara">
             <svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg">
               <defs>
@@ -675,11 +665,11 @@
         </article>
 
         <!-- Frontend Web Studio — this website -->
-        <article class="portfolio-card reveal-up delay-2">
+        <article class="portfolio-card">
           <div class="portfolio-thumb thumb-fws">
             <svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg">
-              <rect width="400" height="260" fill="#0e2733"/>
-              <rect x="0" y="0" width="400" height="30" fill="#123342"/>
+              <rect width="400" height="260" fill="#150c2b"/>
+              <rect x="0" y="0" width="400" height="30" fill="#1e1238"/>
               <circle cx="16" cy="15" r="4" fill="#ef4444"/>
               <circle cx="30" cy="15" r="4" fill="#f59e0b"/>
               <circle cx="44" cy="15" r="4" fill="#22c55e"/>
@@ -690,13 +680,13 @@
                 <linearGradient id="fwsGrad1" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#4f46e5"/><stop offset="1" stop-color="#d946ef"/></linearGradient>
                 <linearGradient id="fwsGrad2" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#4f46e5"/><stop offset="0.5" stop-color="#8b5cf6"/><stop offset="1" stop-color="#d946ef"/></linearGradient>
               </defs>
-              <rect x="18" y="80" width="230" height="16" rx="4" fill="#1e293b"/>
-              <rect x="18" y="104" width="300" height="10" rx="4" fill="#94a3b8"/>
-              <rect x="18" y="120" width="260" height="10" rx="4" fill="#cbd5e1"/>
+              <rect x="18" y="80" width="230" height="16" rx="4" fill="#1e1238"/>
+              <rect x="18" y="104" width="300" height="10" rx="4" fill="#cac0e0"/>
+              <rect x="18" y="120" width="260" height="10" rx="4" fill="#e2dcf0"/>
               <rect x="18" y="144" width="110" height="30" rx="15" fill="url(#fwsGrad2)"/>
-              <rect x="18" y="192" width="110" height="52" rx="10" fill="#123342" stroke="rgba(255,255,255,0.1)"/>
-              <rect x="145" y="192" width="110" height="52" rx="10" fill="#123342" stroke="rgba(255,255,255,0.1)"/>
-              <rect x="272" y="192" width="110" height="52" rx="10" fill="#123342" stroke="rgba(255,255,255,0.1)"/>
+              <rect x="18" y="192" width="110" height="52" rx="10" fill="#1e1238" stroke="rgba(255,255,255,0.1)"/>
+              <rect x="145" y="192" width="110" height="52" rx="10" fill="#1e1238" stroke="rgba(255,255,255,0.1)"/>
+              <rect x="272" y="192" width="110" height="52" rx="10" fill="#1e1238" stroke="rgba(255,255,255,0.1)"/>
               <circle cx="43" cy="209" r="8" fill="url(#fwsGrad2)"/>
               <circle cx="170" cy="209" r="8" fill="url(#fwsGrad2)"/>
               <circle cx="297" cy="209" r="8" fill="url(#fwsGrad2)"/>
@@ -720,38 +710,37 @@
 
       </div>
 
-      <p class="portfolio-note reveal-up">More projects coming soon — this is just the beginning.</p>
+      <p class="portfolio-note">More projects coming soon — this is just the beginning.</p>
     </div>
   </section>
 
   <!-- ============ TECHNOLOGIES ============ -->
   <section class="technologies section" id="technologies">
     <div class="container">
-      <div class="section-head reveal-up">
+      <div class="section-head">
         <span class="eyebrow center">Our Toolkit</span>
         <h2 class="section-title center">Technologies We <span class="text-gradient">Use</span></h2>
         <p class="section-text center">Modern, reliable tools to build fast and scalable websites.</p>
       </div>
 
       <div class="tech-grid">
-        <div class="tech-card reveal-up"><i class="fa-brands fa-html5"></i><span>HTML</span></div>
-        <div class="tech-card reveal-up delay-1"><i class="fa-brands fa-css3-alt"></i><span>CSS</span></div>
-        <div class="tech-card reveal-up delay-2"><i class="fa-brands fa-js"></i><span>JavaScript</span></div>
-        <div class="tech-card reveal-up delay-3"><i class="fa-brands fa-react"></i><span>React</span></div>
-        <div class="tech-card reveal-up"><i class="fa-brands fa-bootstrap"></i><span>Bootstrap</span></div>
-        <div class="tech-card reveal-up delay-1"><i class="fa-brands fa-node-js"></i><span>Node.js</span></div>
-        <div class="tech-card reveal-up delay-2"><i class="fa-solid fa-server"></i><span>Express.js</span></div>
-        <div class="tech-card reveal-up delay-3"><i class="fa-solid fa-leaf"></i><span>MongoDB</span></div>
-        <div class="tech-card reveal-up"><i class="fa-solid fa-diagram-project"></i><span>Mongoose</span></div>
-        <div class="tech-card reveal-up delay-1"><i class="fa-brands fa-github"></i><span>GitHub</span></div>
+        <div class="tech-card"><i class="fa-brands fa-html5"></i><span>HTML</span></div>
+        <div class="tech-card"><i class="fa-brands fa-css3-alt"></i><span>CSS</span></div>
+        <div class="tech-card"><i class="fa-brands fa-js"></i><span>JavaScript</span></div>
+        <div class="tech-card"><i class="fa-brands fa-react"></i><span>React</span></div>
+        <div class="tech-card"><i class="fa-brands fa-bootstrap"></i><span>Bootstrap</span></div>
+        <div class="tech-card"><i class="fa-brands fa-node-js"></i><span>Node.js</span></div>
+        <div class="tech-card"><i class="fa-solid fa-server"></i><span>Express.js</span></div>
+        <div class="tech-card"><i class="fa-solid fa-leaf"></i><span>MongoDB</span></div>
+        <div class="tech-card"><i class="fa-solid fa-diagram-project"></i><span>Mongoose</span></div>
+        <div class="tech-card"><i class="fa-brands fa-github"></i><span>GitHub</span></div>
       </div>
     </div>
   </section>
 
   <!-- ============ CTA ============ -->
   <section class="cta-section">
-    <div class="cta-glow"></div>
-    <div class="container cta-inner reveal-up">
+    <div class="container cta-inner">
       <h2>Ready to Build Your Professional Website?</h2>
       <p>Let's create a modern, professional, and responsive website that helps your business grow online.</p>
       <a href="#contact" class="btn btn-white btn-lg">Start Your Project Today <i class="fa-solid fa-arrow-right"></i></a>
@@ -761,7 +750,7 @@
   <!-- ============ CONTACT ============ -->
   <section class="contact section" id="contact">
     <div class="container contact-grid">
-      <div class="contact-info reveal-up">
+      <div class="contact-info">
         <span class="eyebrow">Get In Touch</span>
         <h2 class="section-title">Let's Build Something <span class="text-gradient">Amazing Together</span></h2>
         <p class="section-text">Have a project in mind? Reach out and let's discuss how we can help your business grow online.</p>
@@ -805,7 +794,7 @@
         </div>
       </div>
 
-      <div class="contact-form-wrap reveal-up delay-1">
+      <div class="contact-form-wrap">
         <div class="contact-form-glow" aria-hidden="true"></div>
         <form class="contact-form" id="contactForm" action="https://formspree.io/f/mgaebwaw" method="POST" novalidate>
           <input type="hidden" name="_subject" value="New Website Enquiry - Frontend Web Studio">
@@ -890,15 +879,15 @@
   </section>
 
   <!-- ============ FAQ ============ -->
-  <section class="faq section section-alt" id="faq">
+  <section class="faq section" id="faq">
     <div class="container">
-      <div class="section-head reveal-up">
+      <div class="section-head">
         <span class="eyebrow center">Got Questions?</span>
         <h2 class="section-title center">Frequently Asked <span class="text-gradient">Questions</span></h2>
         <p class="section-text center">Answers to the questions we hear most often from clients.</p>
       </div>
 
-      <div class="faq-list reveal-up">
+      <div class="faq-list">
         <div class="faq-item active">
           <button class="faq-question">
             How long does it take to build a website?
@@ -1024,9 +1013,15 @@
   <i class="fa-brands fa-whatsapp"></i>
 </a>
 
+<!-- Mobile quick-contact bar (phones only) -->
+<div class="mobile-cta-bar">
+  <a href="tel:+919973746867" class="mcb-btn mcb-call"><i class="fa-solid fa-phone"></i> Call Now</a>
+  <a href="https://wa.me/919973746867" target="_blank" rel="noopener noreferrer" class="mcb-btn mcb-whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+</div>
+
 <!-- Back to top -->
 <button id="backToTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
 
-<script src="js/main.min.js?v=18"></script>
+<script src="js/main.min.js?v=21"></script>
 </body>
 </html>

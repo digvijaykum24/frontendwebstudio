@@ -20,7 +20,6 @@
   --surface: rgba(30, 21, 51, 0.62);       /* card / panel surface — glass */
   --surface-2: rgba(38, 27, 64, 0.68);     /* alt surface, slightly lifted — glass */
   --surface-solid: #1a1030; /* opaque fallback for surfaces that shouldn't be glass */
-  --glass-blur: blur(12px);
   --glass-border: rgba(255, 255, 255, 0.1);
   --gray-50: #150c28;
   --gray-100: rgba(255,255,255,0.05);
@@ -51,7 +50,9 @@
   --transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
   --transition-fast: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
   --container-width: 1200px;
+  color-scheme: dark;
 }
+
 
 /* ---------- Reset ---------- */
 *, *::before, *::after{ box-sizing: border-box; margin: 0; padding: 0; }
@@ -98,13 +99,6 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .section{ padding: 100px 0; }
-.section-alt{
-  background:
-    radial-gradient(circle at 12% 15%, rgba(167, 139, 250, 0.1), transparent 40%),
-    radial-gradient(circle at 88% 85%, rgba(244, 114, 182, 0.08), transparent 40%),
-    var(--gray-50);
-}
-
 .text-gradient{
   background: var(--gradient-primary);
   -webkit-background-clip: text;
@@ -203,8 +197,6 @@ h1,h2,h3,h4,h5,h6{
   background: rgba(255, 255, 255, 0.02);
   color: var(--navy);
   border: 2px solid var(--gray-200);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
 }
 .btn-outline:hover{
   border-color: var(--blue);
@@ -216,8 +208,6 @@ h1,h2,h3,h4,h5,h6{
   background: var(--surface);
   color: var(--blue);
   box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
 }
 .btn-white:hover{
   transform: translateY(-3px) scale(1.02);
@@ -228,24 +218,6 @@ h1,h2,h3,h4,h5,h6{
 .btn-full{ width: 100%; }
 .btn-nav{ padding: 10px 22px; font-size: 0.9rem; }
 
-/* ---------- Glass surfaces ----------
-   Frosted-glass treatment for every card/panel that sits on var(--surface),
-   now translucent — the blur is centralized here instead of repeated per
-   component. */
-.trust-highlights li,
-.stat-card,
-.service-card,
-.feature-card,
-.process-step,
-.pricing-card,
-.portfolio-card,
-.tech-card,
-.faq-item,
-.contact-form-wrap,
-.nav-links{
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-}
 
 /* ==========================================================================
    NAVBAR
@@ -355,33 +327,13 @@ h1,h2,h3,h4,h5,h6{
   position: fixed;
   top: 0; left: 0;
   height: 3px;
-  width: 0%;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left center;
   background: var(--gradient-primary);
   z-index: 1100;
-  transition: width 0.1s linear;
 }
 
-/* ==========================================================================
-   PRELOADER
-   ========================================================================== */
-#preloader{
-  position: fixed; inset: 0;
-  background: var(--surface-solid);
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: opacity 0.5s ease, visibility 0.5s ease;
-}
-#preloader.hidden{ opacity: 0; visibility: hidden; }
-#preloader.hidden .loader-ring{ animation: none; }
-.loader-ring{
-  width: 46px; height: 46px;
-  border: 4px solid var(--gray-200);
-  border-top-color: var(--blue);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-}
 @keyframes spin{ to{ transform: rotate(360deg); } }
 
 /* ==========================================================================
@@ -394,13 +346,6 @@ h1,h2,h3,h4,h5,h6{
   align-items: center;
   padding: 150px 0 100px;
   overflow: hidden;
-  /* Darkest behind the centered text for readability, fading into the page
-     background at the bottom so the next section starts seamlessly. */
-  background:
-    radial-gradient(ellipse at center, rgba(10, 6, 20, 0.72) 0%, rgba(10, 6, 20, 0.35) 55%, rgba(10, 6, 20, 0.1) 100%),
-    linear-gradient(180deg, rgba(10, 6, 20, 0.15) 0%, rgba(10, 6, 20, 0) 55%, var(--bg-deep) 100%),
-    url('../assets/hero-bg.svg') center / cover no-repeat,
-    var(--bg-deep);
 }
 .hero-inner{
   position: relative;
@@ -410,21 +355,6 @@ h1,h2,h3,h4,h5,h6{
   text-align: center;
 }
 .hero-content{ max-width: 820px; }
-.cursor-glow{
-  position: absolute;
-  top: var(--glow-y, 30%);
-  left: var(--glow-x, 70%);
-  width: 420px; height: 420px;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(217, 70, 239,0.2), transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 0;
-  transition: left 0.3s ease-out, top 0.3s ease-out;
-}
-@media (max-width: 992px){
-  .cursor-glow{ display: none; }
-}
 .pill-badge{
   display: inline-flex;
   align-items: center;
@@ -443,19 +373,6 @@ h1,h2,h3,h4,h5,h6{
   border-radius: 50%;
   background: #22c55e;
   position: relative;
-}
-.dot-pulse::after{
-  content: '';
-  position: absolute;
-  inset: -4px;
-  border-radius: 50%;
-  background: #22c55e;
-  opacity: 0.5;
-  animation: pulse 1.8s ease-out infinite;
-}
-@keyframes pulse{
-  0%{ transform: scale(1); opacity: 0.5; }
-  100%{ transform: scale(2.4); opacity: 0; }
 }
 
 .hero-title{
@@ -504,8 +421,8 @@ h1,h2,h3,h4,h5,h6{
 .trust-highlights i{
   width: 20px; height: 20px;
   border-radius: 50%;
-  background: rgba(34, 197, 94, 0.12);
-  color: #16a34a;
+  background: rgba(167, 139, 250, 0.18);
+  color: var(--blue-light);
   display: flex; align-items: center; justify-content: center;
   font-size: 0.7rem;
   flex-shrink: 0;
@@ -569,7 +486,7 @@ h1,h2,h3,h4,h5,h6{
 }
 .stat-card h3{ font-size: 1.6rem; margin-bottom: 4px; }
 .stat-card p{ font-size: 0.85rem; color: var(--gray-500); }
-.counter, .counter-static{
+.counter-static{
   background: var(--gradient-primary);
   -webkit-background-clip: text;
   background-clip: text;
@@ -580,7 +497,6 @@ h1,h2,h3,h4,h5,h6{
 /* ==========================================================================
    SERVICES
    ========================================================================== */
-.services{ background: none; }
 .services-grid{
   grid-template-columns: repeat(4, 1fr);
 }
@@ -672,7 +588,6 @@ h1,h2,h3,h4,h5,h6{
 /* ==========================================================================
    PROCESS
    ========================================================================== */
-.process{ background: none; }
 .process-track{
   position: relative;
   display: grid;
@@ -722,17 +637,6 @@ h1,h2,h3,h4,h5,h6{
    PRICING
    ========================================================================== */
 .pricing{ position: relative; overflow: hidden; }
-.pricing-glow{
-  position: absolute;
-  width: 600px; height: 600px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(167, 139, 250,0.16), transparent 70%);
-  top: -250px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 0;
-  pointer-events: none;
-}
 .pricing-grid{
   grid-template-columns: repeat(3, 1fr);
   align-items: stretch;
@@ -826,7 +730,7 @@ h1,h2,h3,h4,h5,h6{
   border-bottom: 1px solid var(--gray-100);
 }
 .pricing-features li:last-child{ border-bottom: none; }
-.pricing-features li i{ color: #22c55e; font-size: 0.85rem; }
+.pricing-features li i{ color: var(--blue-light); font-size: 0.85rem; }
 .pricing-card.featured .pricing-features li{
   color: rgba(255,255,255,0.85);
   border-bottom-color: rgba(255,255,255,0.08);
@@ -900,25 +804,6 @@ h1,h2,h3,h4,h5,h6{
 .portfolio{
   position: relative;
   overflow: hidden;
-}
-.portfolio-glow-1, .portfolio-glow-2{
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(90px);
-  z-index: 0;
-  pointer-events: none;
-}
-.portfolio-glow-1{
-  width: 420px; height: 420px;
-  background: var(--blue);
-  opacity: 0.14;
-  top: -120px; left: -100px;
-}
-.portfolio-glow-2{
-  width: 380px; height: 380px;
-  background: var(--pink);
-  opacity: 0.14;
-  bottom: -140px; right: -100px;
 }
 .portfolio .container{ position: relative; z-index: 1; }
 
@@ -1127,20 +1012,6 @@ h1,h2,h3,h4,h5,h6{
   overflow: hidden;
   text-align: center;
 }
-@keyframes gradientShift{
-  0%{ background-position: 0% 50%; }
-  50%{ background-position: 100% 50%; }
-  100%{ background-position: 0% 50%; }
-}
-.cta-glow{
-  position: absolute;
-  width: 500px; height: 500px;
-  background: rgba(255,255,255,0.12);
-  border-radius: 50%;
-  filter: blur(100px);
-  top: -200px; left: 50%;
-  transform: translateX(-50%);
-}
 .cta-inner{ position: relative; z-index: 1; }
 .cta-inner h2{
   color: var(--white);
@@ -1277,27 +1148,6 @@ h1,h2,h3,h4,h5,h6{
 }
 .form-group.error .input-icon > i{ color: #f87171; }
 
-/* Staggered entrance for the form's own children, once the card scrolls
-   into view (piggybacks on the existing reveal-up/IntersectionObserver
-   system — no extra JS needed). */
-.contact-form-wrap.reveal-up .contact-form > .form-row,
-.contact-form-wrap.reveal-up .contact-form > .form-group,
-.contact-form-wrap.reveal-up .contact-form > button{
-  opacity: 0;
-  transform: translateY(14px);
-}
-.contact-form-wrap.reveal-up.visible .contact-form > .form-row,
-.contact-form-wrap.reveal-up.visible .contact-form > .form-group,
-.contact-form-wrap.reveal-up.visible .contact-form > button{
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-.contact-form-wrap.reveal-up.visible .contact-form > *:nth-child(2){ transition-delay: 0.08s; }
-.contact-form-wrap.reveal-up.visible .contact-form > *:nth-child(3){ transition-delay: 0.16s; }
-.contact-form-wrap.reveal-up.visible .contact-form > *:nth-child(4){ transition-delay: 0.24s; }
-.contact-form-wrap.reveal-up.visible .contact-form > *:nth-child(5){ transition-delay: 0.32s; }
-.contact-form-wrap.reveal-up.visible .contact-form > *:nth-child(6){ transition-delay: 0.4s; }
 .error-msg{
   display: none;
   font-size: 0.78rem;
@@ -1414,19 +1264,11 @@ h1,h2,h3,h4,h5,h6{
   transition: var(--transition);
 }
 .whatsapp-float:hover{ transform: translateY(-4px) scale(1.05); }
-.whatsapp-float::before{
-  content: '';
-  position: absolute;
-  inset: -6px;
-  border-radius: 50%;
-  border: 2px solid #25d366;
-  opacity: 0.6;
-  animation: whatsapp-pulse 2.2s ease-out infinite;
-}
-@keyframes whatsapp-pulse{
-  0%{ transform: scale(1); opacity: 0.6; }
-  100%{ transform: scale(1.5); opacity: 0; }
-}
+
+/* ==========================================================================
+   MOBILE QUICK-CONTACT BAR (shown on phones only)
+   ========================================================================== */
+.mobile-cta-bar{ display: none; }
 
 /* ==========================================================================
    BACK TO TOP
@@ -1448,20 +1290,6 @@ h1,h2,h3,h4,h5,h6{
 }
 #backToTop.show{ opacity: 1; visibility: visible; transform: translateY(0); }
 #backToTop:hover{ transform: translateY(-4px); }
-
-/* ==========================================================================
-   SCROLL REVEAL
-   ========================================================================== */
-.reveal-up{
-  opacity: 0;
-  transform: translateY(32px);
-  transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
-}
-.reveal-up.visible{ opacity: 1; transform: translateY(0); }
-.delay-1.visible{ transition-delay: 0.1s; }
-.delay-2.visible{ transition-delay: 0.2s; }
-.delay-3.visible{ transition-delay: 0.3s; }
-.delay-4.visible{ transition-delay: 0.4s; }
 
 @media (prefers-reduced-motion: reduce){
   *{ animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
@@ -1545,16 +1373,7 @@ h1,h2,h3,h4,h5,h6{
   .section{ padding: 70px 0; }
   .container{ padding: 0 18px; }
 
-  .hero{
-    min-height: auto;
-    padding: 130px 0 70px;
-    /* Portrait artwork with the web-design elements framing the edges, since
-       the wide desktop image gets cropped to its empty middle on phones. */
-    background:
-      linear-gradient(180deg, rgba(10, 6, 20, 0.35) 0%, rgba(10, 6, 20, 0.5) 55%, rgba(10, 6, 20, 0.45) 88%, var(--bg-deep) 100%),
-      url('../assets/hero-bg-mobile.svg') center top / cover no-repeat,
-      var(--bg-deep);
-  }
+  .hero{ min-height: auto; padding: 130px 0 70px; }
   .hero-title{ font-size: clamp(1.9rem, 8vw, 2.4rem); }
   .hero-cta{ flex-direction: column; align-items: stretch; }
   .hero-cta .btn{ width: 100%; }
@@ -1675,8 +1494,34 @@ h1,h2,h3,h4,h5,h6{
 
   .footer-grid{ grid-template-columns: 1fr; gap: 36px; text-align: left; }
 
-  #backToTop{ width: 42px; height: 42px; bottom: 18px; right: 18px; }
-  .whatsapp-float{ width: 46px; height: 46px; font-size: 1.3rem; bottom: 18px; left: 18px; }
+  #backToTop{ width: 42px; height: 42px; bottom: calc(80px + env(safe-area-inset-bottom)); right: 16px; }
+  .whatsapp-float{ display: none; }
+  body{ padding-bottom: calc(66px + env(safe-area-inset-bottom)); }
+  .mobile-cta-bar{
+    display: flex;
+    gap: 10px;
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 900;
+    padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+    background: var(--surface-solid);
+    border-top: 1px solid var(--gray-200);
+    box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.35);
+  }
+  .mcb-btn{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 46px;
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--white);
+  }
+  .mcb-call{ background: var(--gradient-primary); }
+  .mcb-whatsapp{ background: #25d366; }
 }
 
 @media (max-width: 380px){
@@ -1694,3 +1539,4 @@ h1,h2,h3,h4,h5,h6{
 @media (max-width: 340px){
   .tech-grid{ grid-template-columns: 1fr; }
 }
+
