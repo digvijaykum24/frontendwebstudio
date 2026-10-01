@@ -93,6 +93,47 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  /* ---------- Marquee: only animate while it's on screen ---------- */
+  var marquee = document.getElementById('marquee');
+  if (marquee && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      marquee.classList.toggle('is-paused', !entries[0].isIntersecting);
+    }).observe(marquee);
+  }
+
+  /* ---------- Scroll Reveal (fade + slide up, once per element) ---------- */
+  // Pricing cards reveal as one group (.pricing-grid): on phones they sit in a
+  // horizontal slider, and the next card's peek must stay visible as the
+  // "swipe me" hint instead of waiting to be scrolled into view.
+  var revealTargets = document.querySelectorAll(
+    '.section-head, .about-image, .stat-card, .service-card, .feature-card, .process-step, ' +
+    '.pricing-grid, .portfolio-card, .tech-card, .faq-item, .cta-inner, .contact-panel'
+  );
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if ('IntersectionObserver' in window && !reduceMotion) {
+    revealTargets.forEach(function (el) {
+      // Stagger siblings in a grid slightly (capped so long grids don't lag)
+      var index = el.parentElement ? Array.prototype.indexOf.call(el.parentElement.children, el) : 0;
+      el.style.setProperty('--reveal-delay', Math.min(index, 5) * 80 + 'ms');
+      el.classList.add('reveal');
+    });
+    var revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        revealObserver.unobserve(el);
+        el.addEventListener('transitionend', function onRevealEnd(e) {
+          if (e.target !== el || e.propertyName !== 'opacity') return;
+          el.removeEventListener('transitionend', onRevealEnd);
+          el.classList.remove('reveal', 'is-visible');
+          el.style.removeProperty('--reveal-delay');
+        });
+        el.classList.add('is-visible');
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealTargets.forEach(function (el) { revealObserver.observe(el); });
+  }
+
   /* ---------- Pricing Slider (mobile card swipe + dots) ---------- */
   var pricingGrid = document.querySelector('.pricing-grid');
   var pricingDots = document.getElementById('pricingDots');

@@ -14,7 +14,7 @@
 <meta name="keywords" content="Frontend Web Studio, frontend website studio, website design Patna, web development Patna, website developer Bihar, best website designer in Patna, website designer near me Patna, web design company Patna Bihar, affordable website development Patna, responsive website design, coaching institute website Patna, business website Patna, ecommerce website Bihar, Digvijay Kumar">
 <meta name="author" content="Digvijay Kumar">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-<meta name="theme-color" content="#8b5cf6">
+<meta name="theme-color" content="#170e24">
 <meta name="geo.region" content="IN-BR">
 <meta name="geo.placename" content="Patna">
 <link rel="canonical" href="https://frontendwebstudio.com/">
@@ -202,17 +202,20 @@
 </script>
 
 
+<!-- Hero photo: preloaded since it's visible on first screen -->
+<link rel="preload" as="image" href="assets/founder-hero.webp" fetchpriority="high">
+
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
 
 <!-- Icons: loaded non-render-blocking (full icon kit isn't needed for first paint) -->
 <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
 
 <!-- Styles -->
-<link rel="stylesheet" href="css/style.min.css?v=38">
+<link rel="stylesheet" href="css/style.min.css?v=44">
 
 </head>
 <body>
@@ -225,18 +228,11 @@
   <div class="container navbar-inner">
     <a href="#home" class="brand" aria-label="Frontend Web Studio home">
       <span class="brand-mark">
-        <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="38" height="38" rx="10" fill="url(#brandGrad)"/>
-          <path d="M11 13.5L7 19L11 24.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M27 13.5L31 19L27 24.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M21.5 10L16.5 28" stroke="white" stroke-width="2" stroke-linecap="round"/>
-          <defs>
-            <linearGradient id="brandGrad" x1="0" y1="0" x2="38" y2="38" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#4f46e5"/>
-              <stop offset="0.5" stop-color="#8b5cf6"/>
-              <stop offset="1" stop-color="#d946ef"/>
-            </linearGradient>
-          </defs>
+        <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="1" y="1" width="36" height="36" rx="10" stroke="#f2a7d8" stroke-opacity="0.7" stroke-width="1.4"/>
+          <path d="M13 14L9 19L13 24" stroke="#f6effc" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M25 14L29 19L25 24" stroke="#f6effc" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M21 11.5L17 26.5" stroke="#f2a7d8" stroke-width="1.8" stroke-linecap="round"/>
         </svg>
       </span>
       <span class="brand-text">Frontend <span>Web Studio</span></span>
@@ -267,11 +263,9 @@
   <section class="hero" id="home">
     <div class="container hero-inner">
       <div class="hero-content">
-        <div class="pill-badge">
-          <span class="dot-pulse"></span> Trusted Web Development Studio in Patna, Bihar
-        </div>
+        <span class="hero-label">Web Design Studio · Patna, Bihar</span>
         <h1 class="hero-title">
-          We Build <span class="text-gradient">Websites</span> That <span class="text-gradient">Grow Your Business</span>
+          We build websites that <span class="text-gradient">grow your business.</span>
         </h1>
         <p class="hero-subtitle">
           Frontend Web Studio is a website design &amp; development company in Patna, Bihar, creating modern, fast, responsive and professional websites that help businesses across Patna, Bihar and India build a strong online presence.
@@ -281,18 +275,71 @@
             Start Your Project <i class="fa-solid fa-arrow-right"></i>
           </a>
           <a href="#portfolio" class="btn btn-outline btn-lg">
-            <i class="fa-solid fa-play"></i> View Our Work
+            View Our Work <i class="fa-regular fa-folder-open"></i>
           </a>
         </div>
-        <ul class="trust-highlights">
-          <li><i class="fa-solid fa-circle-check"></i> Responsive Design</li>
-          <li><i class="fa-solid fa-circle-check"></i> Modern UI/UX</li>
-          <li><i class="fa-solid fa-circle-check"></i> Fast Performance</li>
-          <li><i class="fa-solid fa-circle-check"></i> SEO Friendly</li>
-        </ul>
+        <p class="hero-availability">
+          <span class="availability-dot" aria-hidden="true"></span>
+          <span><strong>Available for new projects</strong>Let's build something exceptional for your business.</span>
+        </p>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-orb">
+          <span class="orb-ring orb-ring-outer" aria-hidden="true"></span>
+          <span class="orb-ring" aria-hidden="true"></span>
+          <span class="orb-core">
+            <img src="assets/founder-hero.webp" alt="Digvijay Kumar, Founder &amp; Web Developer at Frontend Web Studio" width="640" height="640" fetchpriority="high" decoding="async">
+          </span>
+        </div>
+        <div class="glass-card hero-card card-price">
+          <span class="glass-label">Starting from</span>
+          <strong>₹5,999</strong>
+          <span>One-time payment</span>
+        </div>
+        <div class="glass-card hero-card card-delivery">
+          <span class="glass-label">Delivery</span>
+          <strong>5–10 days</strong>
+          <span>for most business websites</span>
+        </div>
+        <div class="glass-card hero-card card-focus">
+          <span class="glass-label">Focus areas</span>
+          <ul>
+            <li>Responsive design</li>
+            <li>Modern UI/UX</li>
+            <li>Fast performance</li>
+            <li>SEO friendly</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
+
+  <!-- ============ MARQUEE ============ -->
+  <div class="marquee" id="marquee">
+    <div class="marquee-track">
+      <ul class="marquee-group">
+        <li>Fast &amp; Modern Websites</li>
+        <li>100% Mobile Responsive</li>
+        <li>Attractive UI/UX Design</li>
+        <li>SEO Friendly Structure</li>
+        <li>Modern Web Technologies</li>
+        <li>Client-Focused Approach</li>
+        <li>Website Support</li>
+        <li>Affordable Pricing</li>
+      </ul>
+      <ul class="marquee-group" aria-hidden="true">
+        <li>Fast &amp; Modern Websites</li>
+        <li>100% Mobile Responsive</li>
+        <li>Attractive UI/UX Design</li>
+        <li>SEO Friendly Structure</li>
+        <li>Modern Web Technologies</li>
+        <li>Client-Focused Approach</li>
+        <li>Website Support</li>
+        <li>Affordable Pricing</li>
+      </ul>
+    </div>
+  </div>
 
   <!-- ============ ABOUT ============ -->
   <section class="about section" id="about">
@@ -342,6 +389,7 @@
   <!-- ============ SERVICES ============ -->
   <section class="services section" id="services">
     <div class="container">
+      <div class="panel services-panel">
       <div class="section-head">
         <span class="eyebrow center">What We Offer</span>
         <h2 class="section-title center">Our <span class="text-gradient">Services</span> in Patna, Bihar</h2>
@@ -389,6 +437,7 @@
           <h3>Website Maintenance</h3>
           <p>Support and maintenance to keep your website updated and running smoothly.</p>
         </div>
+      </div>
       </div>
     </div>
   </section>
@@ -464,26 +513,31 @@
       <div class="process-track">
         <div class="process-line" aria-hidden="true"></div>
         <div class="process-step">
+          <div class="step-icon" aria-hidden="true"><i class="fa-regular fa-comments"></i></div>
           <div class="step-number">01</div>
           <h4>Discuss</h4>
           <p>Understand your business and website requirements.</p>
         </div>
         <div class="process-step">
+          <div class="step-icon" aria-hidden="true"><i class="fa-solid fa-pen-ruler"></i></div>
           <div class="step-number">02</div>
           <h4>Design</h4>
           <p>Create a modern and attractive website design.</p>
         </div>
         <div class="process-step">
+          <div class="step-icon" aria-hidden="true"><i class="fa-solid fa-code"></i></div>
           <div class="step-number">03</div>
           <h4>Develop</h4>
           <p>Build a fast, responsive, and professional website.</p>
         </div>
         <div class="process-step">
+          <div class="step-icon" aria-hidden="true"><i class="fa-solid fa-magnifying-glass"></i></div>
           <div class="step-number">04</div>
           <h4>Review</h4>
           <p>Make improvements based on feedback.</p>
         </div>
         <div class="process-step">
+          <div class="step-icon" aria-hidden="true"><i class="fa-solid fa-rocket"></i></div>
           <div class="step-number">05</div>
           <h4>Launch</h4>
           <p>Publish your website and make it available online.</p>
@@ -584,7 +638,7 @@
               <rect x="20" y="80" width="220" height="10" rx="4" fill="#cac0e0"/>
               <rect x="20" y="98" width="180" height="10" rx="4" fill="#6b5e8f"/>
               <rect x="20" y="122" width="110" height="34" rx="8" fill="url(#pg1)"/>
-              <defs><linearGradient id="pg1" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#4f46e5"/><stop offset="1" stop-color="#d946ef"/></linearGradient></defs>
+              <defs><linearGradient id="pg1" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#a77de6"/><stop offset="1" stop-color="#f2a7d8"/></linearGradient></defs>
               <rect x="230" y="54" width="150" height="120" rx="10" fill="#1e1238"/>
               <circle cx="305" cy="95" r="24" fill="#2a1b47"/>
               <rect x="255" y="130" width="100" height="8" rx="4" fill="#3b2d5c"/>
@@ -593,20 +647,18 @@
               <rect x="140" y="180" width="110" height="60" rx="8" fill="#1e1238"/>
               <rect x="260" y="180" width="120" height="60" rx="8" fill="#1e1238"/>
             </svg>
-            <div class="portfolio-overlay">
-              <a href="https://www.revolutionclasses.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">View Project <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-            </div>
           </div>
           <div class="portfolio-info">
-            <span class="portfolio-tag">Coaching Institute</span>
+            <span class="case-number">01</span>
             <h3>Revolution Classes</h3>
+            <span class="portfolio-tag">Coaching Institute</span>
             <p>A modern and professional coaching institute website with faculty, gallery, courses and enquiry sections.</p>
-            <div class="portfolio-tech">
-              <span>HTML</span><span>CSS</span><span>JavaScript</span>
+            <div class="portfolio-foot">
+              <div class="portfolio-tech">
+                <span>HTML</span><span>CSS</span><span>JavaScript</span>
+              </div>
+              <a href="https://www.revolutionclasses.com" target="_blank" rel="noopener noreferrer" class="case-link" aria-label="Visit revolutionclasses.com"><i class="fa-solid fa-arrow-right"></i></a>
             </div>
-            <a href="https://www.revolutionclasses.com" target="_blank" rel="noopener noreferrer" class="portfolio-visit-link">
-              revolutionclasses.com <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </a>
           </div>
         </article>
 
@@ -647,20 +699,18 @@
               <rect x="310" y="208" width="58" height="7" rx="3" fill="#d6d3d1"/>
               <rect x="310" y="221" width="34" height="7" rx="3" fill="#f97316"/>
             </svg>
-            <div class="portfolio-overlay">
-              <a href="https://chatkararesturant.com/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">View Project <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-            </div>
           </div>
           <div class="portfolio-info">
-            <span class="portfolio-tag">Restaurant</span>
+            <span class="case-number">02</span>
             <h3>Chatkara Restaurant</h3>
+            <span class="portfolio-tag">Restaurant</span>
             <p>A vibrant family restaurant website for Barh, Patna — online menu with 73 dishes, add-to-cart ordering, bestsellers, special offers and customer reviews.</p>
-            <div class="portfolio-tech">
-              <span>HTML</span><span>CSS</span><span>JavaScript</span>
+            <div class="portfolio-foot">
+              <div class="portfolio-tech">
+                <span>HTML</span><span>CSS</span><span>JavaScript</span>
+              </div>
+              <a href="https://chatkararesturant.com/" target="_blank" rel="noopener noreferrer" class="case-link" aria-label="Visit chatkararesturant.com"><i class="fa-solid fa-arrow-right"></i></a>
             </div>
-            <a href="https://chatkararesturant.com/" target="_blank" rel="noopener noreferrer" class="portfolio-visit-link">
-              chatkararesturant.com <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </a>
           </div>
         </article>
 
@@ -677,8 +727,8 @@
               <rect x="18" y="46" width="70" height="10" rx="3" fill="url(#fwsGrad1)"/>
               <rect x="300" y="44" width="82" height="16" rx="8" fill="url(#fwsGrad1)"/>
               <defs>
-                <linearGradient id="fwsGrad1" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#4f46e5"/><stop offset="1" stop-color="#d946ef"/></linearGradient>
-                <linearGradient id="fwsGrad2" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#4f46e5"/><stop offset="0.5" stop-color="#8b5cf6"/><stop offset="1" stop-color="#d946ef"/></linearGradient>
+                <linearGradient id="fwsGrad1" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#a77de6"/><stop offset="1" stop-color="#f2a7d8"/></linearGradient>
+                <linearGradient id="fwsGrad2" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a77de6"/><stop offset="0.5" stop-color="#d79ae8"/><stop offset="1" stop-color="#f2a7d8"/></linearGradient>
               </defs>
               <rect x="18" y="80" width="230" height="16" rx="4" fill="#1e1238"/>
               <rect x="18" y="104" width="300" height="10" rx="4" fill="#cac0e0"/>
@@ -691,20 +741,18 @@
               <circle cx="170" cy="209" r="8" fill="url(#fwsGrad2)"/>
               <circle cx="297" cy="209" r="8" fill="url(#fwsGrad2)"/>
             </svg>
-            <div class="portfolio-overlay">
-              <a href="https://frontendwebstudio.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">View Project <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-            </div>
           </div>
           <div class="portfolio-info">
-            <span class="portfolio-tag">Web Agency</span>
+            <span class="case-number">03</span>
             <h3>Frontend Web Studio</h3>
+            <span class="portfolio-tag">Web Agency</span>
             <p>Our own agency website — the premium, animated, fully responsive site you're on right now, built from the ground up.</p>
-            <div class="portfolio-tech">
-              <span>HTML</span><span>CSS</span><span>JavaScript</span>
+            <div class="portfolio-foot">
+              <div class="portfolio-tech">
+                <span>HTML</span><span>CSS</span><span>JavaScript</span>
+              </div>
+              <a href="https://frontendwebstudio.com" target="_blank" rel="noopener noreferrer" class="case-link" aria-label="Visit frontendwebstudio.com"><i class="fa-solid fa-arrow-right"></i></a>
             </div>
-            <a href="https://frontendwebstudio.com" target="_blank" rel="noopener noreferrer" class="portfolio-visit-link">
-              frontendwebstudio.com <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </a>
           </div>
         </article>
 
@@ -741,15 +789,17 @@
   <!-- ============ CTA ============ -->
   <section class="cta-section">
     <div class="container cta-inner">
-      <h2>Ready to Build Your Professional Website?</h2>
+      <h2>Ready to build your <span class="text-gradient">professional website?</span></h2>
       <p>Let's create a modern, professional, and responsive website that helps your business grow online.</p>
-      <a href="#contact" class="btn btn-white btn-lg">Start Your Project Today <i class="fa-solid fa-arrow-right"></i></a>
+      <a href="#contact" class="btn btn-primary btn-lg">Start Your Project Today <i class="fa-solid fa-arrow-right"></i></a>
     </div>
   </section>
 
   <!-- ============ CONTACT ============ -->
   <section class="contact section" id="contact">
-    <div class="container contact-grid">
+    <div class="container">
+      <div class="panel contact-panel">
+      <div class="contact-grid">
       <div class="contact-info">
         <span class="eyebrow">Get In Touch</span>
         <h2 class="section-title">Let's Build Something <span class="text-gradient">Amazing Together</span></h2>
@@ -795,7 +845,6 @@
       </div>
 
       <div class="contact-form-wrap">
-        <div class="contact-form-glow" aria-hidden="true"></div>
         <form class="contact-form" id="contactForm" action="https://formspree.io/f/mgaebwaw" method="POST" novalidate>
           <input type="hidden" name="_subject" value="New Website Enquiry - Frontend Web Studio">
           <div class="form-row">
@@ -874,6 +923,8 @@
             <i class="fa-solid fa-circle-exclamation"></i> Something went wrong sending your enquiry. Please try again, or reach us directly at <a href="tel:9973746867">9973746867</a>.
           </div>
         </form>
+      </div>
+      </div>
       </div>
     </div>
   </section>
@@ -959,19 +1010,12 @@
     <div class="footer-brand">
       <a href="#home" class="brand">
         <span class="brand-mark">
-          <svg width="34" height="34" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="38" height="38" rx="10" fill="url(#brandGrad2)"/>
-            <path d="M11 13.5L7 19L11 24.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M27 13.5L31 19L27 24.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M21.5 10L16.5 28" stroke="white" stroke-width="2" stroke-linecap="round"/>
-            <defs>
-              <linearGradient id="brandGrad2" x1="0" y1="0" x2="38" y2="38" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#4f46e5"/>
-                <stop offset="0.5" stop-color="#8b5cf6"/>
-                <stop offset="1" stop-color="#d946ef"/>
-              </linearGradient>
-            </defs>
-          </svg>
+          <svg width="34" height="34" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="1" y="1" width="36" height="36" rx="10" stroke="#f2a7d8" stroke-opacity="0.7" stroke-width="1.4"/>
+          <path d="M13 14L9 19L13 24" stroke="#f6effc" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M25 14L29 19L25 24" stroke="#f6effc" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M21 11.5L17 26.5" stroke="#f2a7d8" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
         </span>
         <span class="brand-text light">Frontend <span>Web Studio</span></span>
       </a>
@@ -1022,6 +1066,6 @@
 <!-- Back to top -->
 <button id="backToTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
 
-<script src="js/main.min.js?v=21"></script>
+<script src="js/main.min.js?v=24"></script>
 </body>
 </html>

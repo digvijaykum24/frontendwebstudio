@@ -1,17 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 430" width="560" height="430" role="img" aria-label="Responsive website shown on a laptop and a mobile phone">
   <defs>
     <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#4f46e5"/>
-      <stop offset="0.5" stop-color="#8b5cf6"/>
-      <stop offset="1" stop-color="#d946ef"/>
+      <stop offset="0" stop-color="#a77de6"/>
+      <stop offset="0.5" stop-color="#d79ae8"/>
+      <stop offset="1" stop-color="#f2a7d8"/>
     </linearGradient>
     <linearGradient id="gSoft" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#6366f1"/>
-      <stop offset="1" stop-color="#c026d3"/>
+      <stop offset="0" stop-color="#b38ae8"/>
+      <stop offset="1" stop-color="#e88ac9"/>
     </linearGradient>
     <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
-      <stop offset="0" stop-color="#8b5cf6" stop-opacity="0.35"/>
-      <stop offset="1" stop-color="#8b5cf6" stop-opacity="0"/>
+      <stop offset="0" stop-color="#d79ae8" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#d79ae8" stop-opacity="0"/>
     </radialGradient>
     <clipPath id="laptopScreen"><rect x="54" y="54" width="392" height="242" rx="8"/></clipPath>
     <clipPath id="phoneScreen"><rect x="410" y="162" width="110" height="226" rx="12"/></clipPath>
@@ -42,28 +42,28 @@
     <rect x="68" y="162" width="180" height="5" rx="2.5" fill="#6b5e8f"/>
     <rect x="68" y="172" width="150" height="5" rx="2.5" fill="#6b5e8f"/>
     <rect x="68" y="188" width="70" height="18" rx="9" fill="url(#g1)"/>
-    <rect x="146" y="188" width="60" height="18" rx="9" fill="none" stroke="#8b5cf6" stroke-width="1.5"/>
+    <rect x="146" y="188" width="60" height="18" rx="9" fill="none" stroke="#d79ae8" stroke-width="1.5"/>
 
     <rect x="280" y="116" width="150" height="96" rx="10" fill="url(#gSoft)"/>
     <circle cx="320" cy="140" r="10" fill="#ffffff" fill-opacity="0.85"/>
     <polygon points="290,205 330,162 360,190 380,172 422,205" fill="#ffffff" fill-opacity="0.35"/>
 
     <g>
-      <rect x="68" y="228" width="113" height="52" rx="8" fill="#1e1238" stroke="#8b5cf6" stroke-opacity="0.35"/>
+      <rect x="68" y="228" width="113" height="52" rx="8" fill="#1e1238" stroke="#d79ae8" stroke-opacity="0.35"/>
       <circle cx="84" cy="244" r="7" fill="url(#g1)"/>
       <rect x="98" y="240" width="60" height="5" rx="2.5" fill="#cac0e0"/>
       <rect x="98" y="250" width="44" height="4" rx="2" fill="#6b5e8f"/>
       <rect x="80" y="264" width="86" height="4" rx="2" fill="#3b2d5c"/>
     </g>
     <g>
-      <rect x="193" y="228" width="113" height="52" rx="8" fill="#1e1238" stroke="#8b5cf6" stroke-opacity="0.35"/>
+      <rect x="193" y="228" width="113" height="52" rx="8" fill="#1e1238" stroke="#d79ae8" stroke-opacity="0.35"/>
       <circle cx="209" cy="244" r="7" fill="url(#g1)"/>
       <rect x="223" y="240" width="60" height="5" rx="2.5" fill="#cac0e0"/>
       <rect x="223" y="250" width="44" height="4" rx="2" fill="#6b5e8f"/>
       <rect x="205" y="264" width="86" height="4" rx="2" fill="#3b2d5c"/>
     </g>
     <g>
-      <rect x="318" y="228" width="113" height="52" rx="8" fill="#1e1238" stroke="#8b5cf6" stroke-opacity="0.35"/>
+      <rect x="318" y="228" width="113" height="52" rx="8" fill="#1e1238" stroke="#d79ae8" stroke-opacity="0.35"/>
       <circle cx="334" cy="244" r="7" fill="url(#g1)"/>
       <rect x="348" y="240" width="60" height="5" rx="2.5" fill="#cac0e0"/>
       <rect x="348" y="250" width="44" height="4" rx="2" fill="#6b5e8f"/>
@@ -90,7 +90,7 @@
     <rect x="418" y="298" width="90" height="4" rx="2" fill="#6b5e8f"/>
     <rect x="418" y="307" width="74" height="4" rx="2" fill="#6b5e8f"/>
     <rect x="418" y="320" width="54" height="14" rx="7" fill="url(#g1)"/>
-    <rect x="418" y="344" width="94" height="34" rx="6" fill="#1e1238" stroke="#8b5cf6" stroke-opacity="0.35"/>
+    <rect x="418" y="344" width="94" height="34" rx="6" fill="#1e1238" stroke="#d79ae8" stroke-opacity="0.35"/>
     <circle cx="431" cy="361" r="6" fill="url(#g1)"/>
     <rect x="443" y="356" width="50" height="4" rx="2" fill="#cac0e0"/>
     <rect x="443" y="364" width="34" height="4" rx="2" fill="#6b5e8f"/>
@@ -101,7 +101,7 @@
   <text x="40" y="46" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#ffffff">&lt;/&gt;</text>
 
   <!-- SEO badge -->
-  <rect x="30" y="346" width="150" height="40" rx="20" fill="#1e1238" stroke="#8b5cf6" stroke-opacity="0.5"/>
+  <rect x="30" y="346" width="150" height="40" rx="20" fill="#1e1238" stroke="#d79ae8" stroke-opacity="0.5"/>
   <circle cx="52" cy="366" r="11" fill="#22c55e"/>
   <path d="M46.5 366 l4 4 l7 -8" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
   <text x="72" y="371" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#f1ecfb">SEO Ready</text>
