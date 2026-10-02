@@ -203,7 +203,7 @@
 
 
 <!-- Hero photo: preloaded since it's visible on first screen -->
-<link rel="preload" as="image" href="assets/founder-hero.webp" fetchpriority="high">
+<link rel="preload" as="image" imagesrcset="assets/founder-hero-640.webp 640w, assets/founder-hero-960.webp 960w, assets/founder-hero-1280.webp 1280w" imagesizes="(max-width: 992px) 100vw, 50vw" fetchpriority="high">
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -215,7 +215,7 @@
 <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
 
 <!-- Styles -->
-<link rel="stylesheet" href="css/style.min.css?v=44">
+<link rel="stylesheet" href="css/style.min.css?v=47">
 
 </head>
 <body>
@@ -261,6 +261,9 @@
 
   <!-- ============ HERO ============ -->
   <section class="hero" id="home">
+    <div class="hero-photo">
+      <img src="assets/founder-hero-960.webp" srcset="assets/founder-hero-640.webp 640w, assets/founder-hero-960.webp 960w, assets/founder-hero-1280.webp 1280w" sizes="(max-width: 992px) 100vw, 50vw" alt="Digvijay Kumar, Founder &amp; Web Developer at Frontend Web Studio" width="1280" height="1536" fetchpriority="high" decoding="async">
+    </div>
     <div class="container hero-inner">
       <div class="hero-content">
         <span class="hero-label">Web Design Studio · Patna, Bihar</span>
@@ -284,34 +287,6 @@
         </p>
       </div>
 
-      <div class="hero-visual">
-        <div class="hero-orb">
-          <span class="orb-ring orb-ring-outer" aria-hidden="true"></span>
-          <span class="orb-ring" aria-hidden="true"></span>
-          <span class="orb-core">
-            <img src="assets/founder-hero.webp" alt="Digvijay Kumar, Founder &amp; Web Developer at Frontend Web Studio" width="640" height="640" fetchpriority="high" decoding="async">
-          </span>
-        </div>
-        <div class="glass-card hero-card card-price">
-          <span class="glass-label">Starting from</span>
-          <strong>₹5,999</strong>
-          <span>One-time payment</span>
-        </div>
-        <div class="glass-card hero-card card-delivery">
-          <span class="glass-label">Delivery</span>
-          <strong>5–10 days</strong>
-          <span>for most business websites</span>
-        </div>
-        <div class="glass-card hero-card card-focus">
-          <span class="glass-label">Focus areas</span>
-          <ul>
-            <li>Responsive design</li>
-            <li>Modern UI/UX</li>
-            <li>Fast performance</li>
-            <li>SEO friendly</li>
-          </ul>
-        </div>
-      </div>
     </div>
   </section>
 

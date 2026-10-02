@@ -126,12 +126,6 @@ h1, h2, h3, h4, h5, h6{
   border-radius: var(--radius-lg);
   padding: 48px;
 }
-.glass-card{
-  background: rgba(46, 28, 70, 0.82);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-md);
-}
 
 /* ---------- Buttons ---------- */
 .btn{
@@ -322,6 +316,7 @@ h1, h2, h3, h4, h5, h6{
    HERO
    ========================================================================== */
 .hero{
+  position: relative;
   min-height: min(100vh, 900px);
   display: flex;
   align-items: center;
@@ -329,8 +324,10 @@ h1, h2, h3, h4, h5, h6{
   overflow: hidden;
 }
 .hero-inner{
+  position: relative;
+  z-index: 1;
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
+  grid-template-columns: 1fr 1fr;
   gap: 48px;
   align-items: center;
 }
@@ -404,89 +401,31 @@ h1, h2, h3, h4, h5, h6{
   background: var(--pink);
 }
 
-/* Orb with floating fact cards */
-.hero-visual{
-  position: relative;
-  height: 520px;
-}
-.hero-orb{
+/* Portrait filling the right half, fading into the background on its left
+   edge and at the bottom (the fade stops before the face). */
+.hero-photo{
   position: absolute;
-  top: 50%; left: 50%;
-  width: 400px; height: 400px;
-  transform: translate(-50%, -50%);
+  top: 80px;                 /* starts below the fixed navbar, never behind it */
+  right: 0; bottom: 0;
+  width: 50%;
+  z-index: 0;
 }
-.orb-ring{
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  border: 1px solid rgba(242, 167, 216, 0.28);
-}
-.orb-ring-outer{
-  inset: -38px;
-  border-color: rgba(196, 163, 242, 0.14);
-}
-.orb-core{
-  position: absolute;
-  inset: 42px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 2px solid rgba(242, 167, 216, 0.55);
-  /* Shown while the photo loads */
-  background: radial-gradient(circle at 34% 28%, #fbd0ea 0%, #df98d8 20%, #9a5fcf 48%, #43225f 76%, #20122f 100%);
-  box-shadow: 0 0 90px 6px rgba(232, 138, 201, 0.3);
-}
-.orb-core img{
+.hero-photo img{
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 30%;
-}
-
-.hero-card{
-  position: absolute;
-  min-width: 158px;
-  padding: 16px 18px;
-}
-.glass-label{
-  display: block;
-  font-size: 0.62rem;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--pink);
-  margin-bottom: 8px;
-}
-.hero-card strong{
-  display: block;
-  font-family: var(--font-head);
-  font-weight: 400;
-  font-size: 1.5rem;
-  line-height: 1.15;
-  color: var(--heading);
-}
-.hero-card > span:not(.glass-label){
-  display: block;
-  margin-top: 4px;
-  font-size: 0.76rem;
-  color: var(--text-muted);
-}
-.card-price{ top: 4%; right: 0; }
-.card-delivery{ bottom: 18%; left: 0; }
-.card-focus{ bottom: 0; right: 4%; }
-.card-focus ul{ display: grid; gap: 4px; }
-.card-focus li{
-  position: relative;
-  padding-left: 13px;
-  font-size: 0.78rem;
-  color: var(--text-body);
-}
-.card-focus li::before{
-  content: '';
-  position: absolute;
-  left: 0; top: 0.62em;
-  width: 4px; height: 4px;
-  border-radius: 50%;
-  background: var(--pink);
+  object-position: center top;
+  filter: brightness(0.92) saturate(0.95);
+  -webkit-mask-image:
+    linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.6) 16%, #000 30%),
+    linear-gradient(to top, transparent 0%, #000 24%),
+    linear-gradient(to bottom, transparent 0%, #000 5%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.6) 16%, #000 30%),
+    linear-gradient(to top, transparent 0%, #000 24%),
+    linear-gradient(to bottom, transparent 0%, #000 5%);
+  mask-composite: intersect;
 }
 
 /* ==========================================================================
@@ -1229,8 +1168,6 @@ h1, h2, h3, h4, h5, h6{
    RESPONSIVE — LAPTOP (≤1200px)
    ========================================================================== */
 @media (max-width: 1200px){
-  .hero-visual{ height: 460px; }
-  .hero-orb{ width: 340px; height: 340px; }
   .services-panel{ grid-template-columns: 1fr; gap: 36px; }
   .services-panel .section-head{ max-width: 620px; }
 }
@@ -1268,12 +1205,20 @@ h1, h2, h3, h4, h5, h6{
    RESPONSIVE — TABLET (≤992px)
    ========================================================================== */
 @media (max-width: 992px){
-  .hero{ min-height: auto; }
+  /* Photo full-width on top (just under the navbar), fading at its base into
+     the text, which overlaps the faded part slightly. */
+  .hero{ display: block; min-height: auto; padding: 80px 0 64px; }
+  .hero-photo{ position: relative; top: auto; width: 100%; height: min(105vw, 620px); }
+  .hero-photo img{
+    object-position: center 18%;
+    -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 35%);
+    mask-image: linear-gradient(to top, transparent 0%, #000 35%);
+  }
+  .hero-inner{ margin-top: -70px; }
   .hero-inner{ grid-template-columns: 1fr; gap: 56px; text-align: center; }
   .hero-subtitle{ margin-left: auto; margin-right: auto; }
   .hero-cta{ justify-content: center; }
   .hero-availability{ justify-content: center; text-align: left; }
-  .hero-visual{ width: 100%; max-width: 540px; margin: 0 auto; text-align: left; }
 
   .about-grid{ grid-template-columns: 1fr; gap: 44px; }
 
@@ -1330,7 +1275,7 @@ h1, h2, h3, h4, h5, h6{
   .section-head{ margin-bottom: 36px; }
   .grid{ gap: 16px; }
 
-  .hero{ padding: 120px 0 64px; }
+  .hero{ padding: 80px 0 56px; }
   .hero-title{ font-size: clamp(2.1rem, 9vw, 2.6rem); }
   .hero-cta{ flex-direction: column; align-items: stretch; }
   .hero-cta .btn{ width: 100%; }
@@ -1338,29 +1283,6 @@ h1, h2, h3, h4, h5, h6{
   .marquee::before, .marquee::after{ width: 40px; }
   .marquee-group li{ font-size: 0.76rem; letter-spacing: 0.16em; }
   .marquee-group li::after{ margin: 0 20px; }
-  /* Orb on top, fact cards in a tidy grid below it */
-  .hero-visual{
-    height: auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-  .hero-orb{
-    position: relative;
-    top: auto; left: auto;
-    transform: none;
-    grid-column: 1 / -1;
-    justify-self: center;
-    width: 230px; height: 230px;
-    margin: 24px 0 26px;
-  }
-  .orb-ring-outer{ inset: -22px; }
-  .orb-core{ inset: 26px; }
-  .hero-card{ position: static; min-width: 0; padding: 14px 16px; }
-  .hero-card strong{ font-size: 1.25rem; }
-  .card-focus{ grid-column: 1 / -1; }
-  .card-focus ul{ grid-template-columns: 1fr 1fr; column-gap: 12px; }
-
   .stats-grid{ grid-template-columns: repeat(2, 1fr); gap: 12px; }
 
   .services-grid{ grid-template-columns: 1fr; gap: 22px; }
@@ -1455,5 +1377,4 @@ h1, h2, h3, h4, h5, h6{
 
 @media (max-width: 340px){
   .tech-grid{ grid-template-columns: 1fr; }
-  .card-focus ul{ grid-template-columns: 1fr; }
 }
