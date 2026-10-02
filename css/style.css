@@ -200,6 +200,8 @@ h1, h2, h3, h4, h5, h6{
 }
 .brand{ display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
 .brand-mark{ display: flex; }
+.brand-mark img{ height: 42px; width: auto; }
+.footer-brand .brand-mark img{ height: 38px; }
 .brand-text{
   display: flex;
   flex-direction: column;
@@ -1367,6 +1369,7 @@ h1, h2, h3, h4, h5, h6{
 @media (max-width: 380px){
   .container{ padding: 0 14px; }
   .brand-text{ font-size: 0.9rem; letter-spacing: 0.26em; }
+  .brand-mark img{ height: 36px; }
   .hero-title{ font-size: 2rem; }
   .why-us-grid{ gap: 10px; }
   .feature-card{ padding: 16px 12px; }
