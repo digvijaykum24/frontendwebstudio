@@ -105,16 +105,20 @@ document.addEventListener('DOMContentLoaded', function () {
   // Pricing cards reveal as one group (.pricing-grid): on phones they sit in a
   // horizontal slider, and the next card's peek must stay visible as the
   // "swipe me" hint instead of waiting to be scrolled into view.
+  // Heading groups reveal piece by piece (label, title, text) for a cascade.
+  // Containers whose children also reveal are left out so nothing fades twice.
   var revealTargets = document.querySelectorAll(
-    '.section-head, .about-image, .stat-card, .service-card, .feature-card, .process-step, ' +
-    '.pricing-grid, .portfolio-card, .tech-card, .faq-item, .cta-inner, .contact-panel'
+    '.marquee, .section-head > *, .about-content > :not(.stats-grid), .about-image, .stat-card, ' +
+    '.service-card, .feature-card, .process-step, .pricing-grid, .pricing-fineprint, .pricing-note, ' +
+    '.portfolio-card, .portfolio-note, .tech-card, .faq-item, .cta-inner > *, ' +
+    '.contact-info > *, .contact-form-wrap, .footer-grid > *'
   );
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if ('IntersectionObserver' in window && !reduceMotion) {
     revealTargets.forEach(function (el) {
       // Stagger siblings in a grid slightly (capped so long grids don't lag)
       var index = el.parentElement ? Array.prototype.indexOf.call(el.parentElement.children, el) : 0;
-      el.style.setProperty('--reveal-delay', Math.min(index, 5) * 80 + 'ms');
+      el.style.setProperty('--reveal-delay', Math.min(index, 5) * 100 + 'ms');
       el.classList.add('reveal');
     });
     var revealObserver = new IntersectionObserver(function (entries) {
