@@ -1,6 +1,6 @@
 /* ==========================================================================
    Frontend Web Studio — Stylesheet
-   Plum night palette with a soft pink accent. Headings: light Poppins with an
+   Plum night palette with a purple accent. Headings: light Poppins with an
    italic Playfair Display accent word. Body: Inter.
    ========================================================================== */
 
@@ -17,18 +17,18 @@
   --text-muted: #a797b9;
   --text-faint: #8d7ca2;
 
-  --pink: #f2a7d8;
-  --pink-strong: #e88ac9;
+  --accent: #b794f6;
+  --accent-strong: #9b6bff;
   --lilac: #c4a3f2;
-  --on-pink: #2a1236;        /* text on pink buttons */
-  --gradient-pink: linear-gradient(135deg, #f8b8de 0%, #e9a3e6 55%, #c9a0f0 100%);
+  --on-accent: #1d0d36;        /* text on purple buttons */
+  --gradient-accent: linear-gradient(135deg, #dcc8ff 0%, #b994ff 55%, #9b72f5 100%);
 
-  --border: rgba(242, 200, 236, 0.1);
-  --border-strong: rgba(242, 167, 216, 0.38);
+  --border: rgba(214, 198, 255, 0.1);
+  --border-strong: rgba(183, 148, 246, 0.38);
 
   --shadow-md: 0 18px 40px -18px rgba(0, 0, 0, 0.55);
   --shadow-lg: 0 30px 60px -24px rgba(0, 0, 0, 0.6);
-  --shadow-pink: 0 24px 50px -24px rgba(232, 138, 201, 0.5);
+  --shadow-accent: 0 24px 50px -24px rgba(155, 107, 255, 0.5);
 
   --radius-sm: 10px;
   --radius-md: 18px;
@@ -51,7 +51,7 @@ body{
   font-family: var(--font-body);
   color: var(--text-body);
   background:
-    radial-gradient(ellipse at 85% 0%, rgba(232, 138, 201, 0.16), transparent 42%),
+    radial-gradient(ellipse at 85% 0%, rgba(155, 107, 255, 0.16), transparent 42%),
     radial-gradient(ellipse at 0% 22%, rgba(124, 77, 196, 0.2), transparent 40%),
     radial-gradient(ellipse at 100% 70%, rgba(196, 163, 242, 0.1), transparent 42%),
     var(--bg-deep);
@@ -85,12 +85,12 @@ h1, h2, h3, h4, h5, h6{
 
 .section{ padding: 110px 0; }
 
-/* Accent word inside headings: italic serif in pink (e.g. "the future.") */
+/* Accent word inside headings: italic serif in purple (e.g. "the future.") */
 .text-gradient{
   font-family: var(--font-accent);
   font-style: italic;
   font-weight: 400;
-  color: var(--pink);
+  color: var(--accent);
   letter-spacing: 0;
 }
 
@@ -102,7 +102,7 @@ h1, h2, h3, h4, h5, h6{
   font-weight: 600;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--pink);
+  color: var(--accent);
   margin-bottom: 14px;
 }
 .section-title{
@@ -147,14 +147,14 @@ h1, h2, h3, h4, h5, h6{
 .btn:active{ transform: scale(0.97); }
 .btn-primary,
 .btn-white{
-  background: var(--gradient-pink);
-  color: var(--on-pink);
-  box-shadow: 0 12px 30px -12px rgba(232, 138, 201, 0.7);
+  background: var(--gradient-accent);
+  color: var(--on-accent);
+  box-shadow: 0 12px 30px -12px rgba(155, 107, 255, 0.7);
 }
 .btn-primary:hover,
 .btn-white:hover{
   transform: translateY(-2px);
-  box-shadow: 0 18px 38px -12px rgba(232, 138, 201, 0.85);
+  box-shadow: 0 18px 38px -12px rgba(155, 107, 255, 0.85);
 }
 .btn-outline{
   background: rgba(255, 255, 255, 0.02);
@@ -162,8 +162,8 @@ h1, h2, h3, h4, h5, h6{
   border: 1px solid rgba(255, 255, 255, 0.22);
 }
 .btn-outline:hover{
-  border-color: var(--pink);
-  color: var(--pink);
+  border-color: var(--accent);
+  color: var(--accent);
   transform: translateY(-2px);
 }
 .btn-lg{ padding: 17px 32px; font-size: 0.8rem; }
@@ -247,19 +247,19 @@ h1, h2, h3, h4, h5, h6{
   bottom: 1px;
   width: 4px; height: 4px;
   border-radius: 50%;
-  background: var(--pink);
+  background: var(--accent);
   transform: translateX(-50%);
 }
 .nav-links .btn-nav{
   margin-left: 14px;
   background: transparent;
   color: var(--heading);
-  border: 1px solid rgba(242, 167, 216, 0.6);
+  border: 1px solid rgba(183, 148, 246, 0.6);
   box-shadow: none;
 }
 .nav-links .btn-nav:hover{
-  background: var(--gradient-pink);
-  color: var(--on-pink);
+  background: var(--gradient-accent);
+  color: var(--on-accent);
   border-color: transparent;
   transform: none;
 }
@@ -310,7 +310,7 @@ h1, h2, h3, h4, h5, h6{
   width: 100%;
   transform: scaleX(0);
   transform-origin: left center;
-  background: var(--gradient-pink);
+  background: var(--gradient-accent);
   z-index: 1100;
 }
 
@@ -341,7 +341,7 @@ h1, h2, h3, h4, h5, h6{
   font-weight: 600;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--pink);
+  color: var(--accent);
   margin-bottom: 26px;
 }
 .hero-label::before,
@@ -393,14 +393,14 @@ h1, h2, h3, h4, h5, h6{
   width: 14px; height: 14px;
   margin-top: 2px;
   border-radius: 50%;
-  border: 1px solid var(--pink);
+  border: 1px solid var(--accent);
 }
 .availability-dot::after{
   content: '';
   position: absolute;
   inset: 3px;
   border-radius: 50%;
-  background: var(--pink);
+  background: var(--accent);
 }
 
 /* Portrait filling the right half, fading into the background on its left
@@ -479,7 +479,7 @@ h1, h2, h3, h4, h5, h6{
   margin: 0 30px;
   font-size: 0.8em;
   letter-spacing: 0;
-  color: var(--pink);
+  color: var(--accent);
 }
 @keyframes marquee-scroll{
   to{ transform: translateX(-50%); }
@@ -524,7 +524,7 @@ h1, h2, h3, h4, h5, h6{
   font-family: var(--font-accent);
   font-style: italic;
   font-weight: 400;
-  color: var(--pink);
+  color: var(--accent);
 }
 
 /* Shared outlined icon circle */
@@ -538,8 +538,8 @@ h1, h2, h3, h4, h5, h6{
   justify-content: center;
   border-radius: 50%;
   border: 1px solid var(--border-strong);
-  background: rgba(242, 167, 216, 0.06);
-  color: var(--pink);
+  background: rgba(183, 148, 246, 0.06);
+  color: var(--accent);
   flex-shrink: 0;
   transition: var(--transition);
 }
@@ -569,7 +569,7 @@ h1, h2, h3, h4, h5, h6{
   margin-bottom: 8px;
 }
 .service-card p{ font-size: 0.86rem; line-height: 1.6; color: var(--text-muted); }
-.service-card:hover .service-icon{ border-color: var(--pink); background: rgba(242, 167, 216, 0.14); }
+.service-card:hover .service-icon{ border-color: var(--accent); background: rgba(183, 148, 246, 0.14); }
 
 /* ==========================================================================
    WHY CHOOSE US
@@ -605,7 +605,7 @@ h1, h2, h3, h4, h5, h6{
   left: 32px;
   right: calc((100% - 96px) / 5 - 32px);
   height: 1px;
-  background: linear-gradient(90deg, rgba(242, 167, 216, 0.7), rgba(196, 163, 242, 0.45));
+  background: linear-gradient(90deg, rgba(183, 148, 246, 0.7), rgba(196, 163, 242, 0.45));
 }
 .process-step{ position: relative; z-index: 1; }
 /* Chevron midway between neighbouring icons */
@@ -615,8 +615,8 @@ h1, h2, h3, h4, h5, h6{
   top: 27px;
   left: calc(50% + 40px);
   width: 8px; height: 8px;
-  border-top: 1px solid var(--pink);
-  border-right: 1px solid var(--pink);
+  border-top: 1px solid var(--accent);
+  border-right: 1px solid var(--accent);
   transform: rotate(45deg);
 }
 .step-icon{
@@ -625,14 +625,14 @@ h1, h2, h3, h4, h5, h6{
   margin-bottom: 22px;
   background: #1f1330;
 }
-.process-step:hover .step-icon{ border-color: var(--pink); background: #2a1940; }
+.process-step:hover .step-icon{ border-color: var(--accent); background: #2a1940; }
 .step-number{
   display: inline;
   margin-right: 10px;
   font-family: var(--font-head);
   font-size: 1rem;
   font-weight: 500;
-  color: var(--pink);
+  color: var(--accent);
 }
 .process-step h4{
   display: inline;
@@ -676,16 +676,16 @@ h1, h2, h3, h4, h5, h6{
 .pricing-card:hover{ border-color: var(--border-strong); transform: translateY(-4px); }
 .pricing-card.featured{
   background: linear-gradient(165deg, rgba(96, 54, 124, 0.55) 0%, rgba(40, 24, 62, 0.6) 100%);
-  border-color: rgba(242, 167, 216, 0.5);
-  box-shadow: var(--shadow-pink);
+  border-color: rgba(183, 148, 246, 0.5);
+  box-shadow: var(--shadow-accent);
 }
 .pricing-badge{
   position: absolute;
   top: -13px; left: 34px;
   padding: 6px 16px;
   border-radius: var(--radius-full);
-  background: var(--gradient-pink);
-  color: var(--on-pink);
+  background: var(--gradient-accent);
+  color: var(--on-accent);
   font-size: 0.66rem;
   font-weight: 600;
   letter-spacing: 0.16em;
@@ -712,7 +712,7 @@ h1, h2, h3, h4, h5, h6{
   font-family: var(--font-head);
   font-size: 1.25rem;
   font-weight: 300;
-  color: var(--pink);
+  color: var(--accent);
 }
 .pricing-price .amount{
   font-family: var(--font-head);
@@ -739,7 +739,7 @@ h1, h2, h3, h4, h5, h6{
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 .pricing-features li:last-child{ border-bottom: none; }
-.pricing-features li i{ color: var(--pink); font-size: 0.8rem; }
+.pricing-features li i{ color: var(--accent); font-size: 0.8rem; }
 
 /* Mobile-only swipe slider extras (see MOBILE media query) */
 .pricing-swipe-hint{
@@ -754,7 +754,7 @@ h1, h2, h3, h4, h5, h6{
   text-transform: uppercase;
   color: var(--text-muted);
 }
-.pricing-swipe-hint i{ color: var(--pink); }
+.pricing-swipe-hint i{ color: var(--accent); }
 .pricing-dots{
   display: none;
   justify-content: center;
@@ -772,7 +772,7 @@ h1, h2, h3, h4, h5, h6{
 .pricing-dots span.active{
   width: 22px;
   border-radius: var(--radius-full);
-  background: var(--gradient-pink);
+  background: var(--gradient-accent);
 }
 .pricing-fineprint{
   max-width: 720px;
@@ -786,7 +786,7 @@ h1, h2, h3, h4, h5, h6{
   font-size: 0.92rem;
   color: var(--text-muted);
 }
-.pricing-note a{ color: var(--pink); font-weight: 600; }
+.pricing-note a{ color: var(--accent); font-weight: 600; }
 .pricing-note a:hover{ text-decoration: underline; }
 
 /* ==========================================================================
@@ -856,11 +856,11 @@ h1, h2, h3, h4, h5, h6{
   justify-content: center;
   border-radius: 50%;
   border: 1px solid var(--border-strong);
-  color: var(--pink);
+  color: var(--accent);
   font-size: 0.85rem;
   transition: var(--transition);
 }
-.case-link:hover{ background: var(--gradient-pink); color: var(--on-pink); border-color: transparent; }
+.case-link:hover{ background: var(--gradient-accent); color: var(--on-accent); border-color: transparent; }
 .portfolio-note{
   margin-top: 30px;
   font-size: 0.92rem;
@@ -887,7 +887,7 @@ h1, h2, h3, h4, h5, h6{
   transition: var(--transition);
 }
 .tech-card:hover{ border-color: var(--border-strong); transform: translateY(-4px); }
-.tech-card i{ font-size: 1.5rem; color: var(--pink); }
+.tech-card i{ font-size: 1.5rem; color: var(--accent); }
 .tech-card span{
   font-size: 0.68rem;
   font-weight: 600;
@@ -926,7 +926,7 @@ h1, h2, h3, h4, h5, h6{
   font-weight: 400;
   color: var(--heading);
 }
-.faq-question i{ flex-shrink: 0; color: var(--pink); font-size: 0.85rem; transition: transform 0.35s ease; }
+.faq-question i{ flex-shrink: 0; color: var(--accent); font-size: 0.85rem; transition: transform 0.35s ease; }
 .faq-item.active .faq-question i{ transform: rotate(180deg); }
 .faq-answer{
   display: grid;
@@ -982,7 +982,7 @@ h1, h2, h3, h4, h5, h6{
   margin-bottom: 2px;
 }
 .info-item p{ font-size: 0.95rem; color: var(--heading); }
-.info-item p a:hover{ color: var(--pink); }
+.info-item p a:hover{ color: var(--accent); }
 
 .social-row{ display: flex; gap: 10px; }
 .social-row a{
@@ -996,7 +996,7 @@ h1, h2, h3, h4, h5, h6{
   font-size: 0.9rem;
   transition: var(--transition);
 }
-.social-row a:hover{ background: var(--gradient-pink); color: var(--on-pink); border-color: transparent; }
+.social-row a:hover{ background: var(--gradient-accent); color: var(--on-accent); border-color: transparent; }
 
 .contact-form{ position: relative; }
 .form-row{ display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
@@ -1022,7 +1022,7 @@ h1, h2, h3, h4, h5, h6{
   transition: color 0.25s ease;
 }
 .input-icon.input-icon-top > i{ top: 17px; transform: none; }
-.input-icon:focus-within > i{ color: var(--pink); }
+.input-icon:focus-within > i{ color: var(--accent); }
 .form-group input,
 .form-group select,
 .form-group textarea{
@@ -1040,8 +1040,8 @@ h1, h2, h3, h4, h5, h6{
 .form-group select:focus,
 .form-group textarea:focus{
   outline: none;
-  border-color: var(--pink);
-  box-shadow: 0 0 0 3px rgba(242, 167, 216, 0.14);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(183, 148, 246, 0.14);
 }
 .form-group textarea{ resize: vertical; min-height: 110px; padding-top: 14px; }
 .form-group.error input,
@@ -1090,13 +1090,13 @@ h1, h2, h3, h4, h5, h6{
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--pink);
+  color: var(--accent);
 }
 .footer-links{ display: flex; flex-direction: column; }
 .footer-links a{ padding: 6px 0; font-size: 0.9rem; transition: color 0.25s ease; }
 .footer-links a:hover{ color: var(--heading); }
 .footer-contact p{ display: flex; align-items: center; gap: 10px; margin-bottom: 12px; font-size: 0.9rem; }
-.footer-contact i{ width: 16px; color: var(--pink); }
+.footer-contact i{ width: 16px; color: var(--accent); }
 .footer-contact a:hover{ color: var(--heading); }
 .footer-bottom{
   padding: 24px 0;
@@ -1136,8 +1136,8 @@ h1, h2, h3, h4, h5, h6{
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: var(--gradient-pink);
-  color: var(--on-pink);
+  background: var(--gradient-accent);
+  color: var(--on-accent);
   box-shadow: var(--shadow-md);
   opacity: 0;
   visibility: hidden;
@@ -1196,7 +1196,7 @@ h1, h2, h3, h4, h5, h6{
   }
   .nav-links.active{ right: 0; }
   .nav-link{ padding: 14px 16px; font-size: 0.78rem; border-radius: var(--radius-sm); }
-  .nav-link.active{ background: rgba(242, 167, 216, 0.08); }
+  .nav-link.active{ background: rgba(183, 148, 246, 0.08); }
   .nav-link.active::after{ left: 6px; top: 50%; bottom: auto; transform: translateY(-50%); }
   .nav-links .btn-nav{ margin: 18px 0 0; justify-content: center; }
   .hamburger{ display: flex; }
@@ -1243,7 +1243,7 @@ h1, h2, h3, h4, h5, h6{
     position: absolute;
     left: 31px; top: 64px; bottom: 0;
     width: 1px;
-    background: linear-gradient(180deg, rgba(242, 167, 216, 0.6), rgba(196, 163, 242, 0.35));
+    background: linear-gradient(180deg, rgba(183, 148, 246, 0.6), rgba(196, 163, 242, 0.35));
   }
   .process-step{
     display: grid;
@@ -1362,7 +1362,7 @@ h1, h2, h3, h4, h5, h6{
     letter-spacing: 0.12em;
     text-transform: uppercase;
   }
-  .mcb-call{ background: var(--gradient-pink); color: var(--on-pink); }
+  .mcb-call{ background: var(--gradient-accent); color: var(--on-accent); }
   .mcb-whatsapp{ background: #25d366; color: #fff; }
 }
 
