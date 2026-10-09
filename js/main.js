@@ -137,13 +137,15 @@ document.addEventListener('DOMContentLoaded', function () {
   // "swipe me" hint instead of waiting to be scrolled into view.
   // Heading groups reveal piece by piece (label, title, text) for a cascade.
   // Containers whose children also reveal are left out so nothing fades twice.
+  // On phones the projects are a swipe slider too, so they reveal as a group.
+  var projectsSlider = window.matchMedia('(max-width: 640px)').matches;
   var revealTargets = document.querySelectorAll(
     '.marquee, .section-head > *, .about-content > :not(.stats-grid), .about-image, .stat-card, ' +
     '.service-card, .feature-card, .process-step, .pricing-grid, .pricing-fineprint, .pricing-note, ' +
-    '.design-card, .design-pack, .design-perks, .portfolio-card, .portfolio-note, .tech-card, .faq-item, .cta-inner > *, ' +
+    '.design-card, .design-pack, .design-perks, ' + (projectsSlider ? '.portfolio-grid' : '.portfolio-card') + ', .portfolio-note, .tech-card, .faq-item, .cta-inner > *, ' +
     '.contact-info > *, .contact-form-wrap, .footer-grid > *'
   );
-  var cardSelector = '.stat-card, .service-card, .feature-card, .process-step, .pricing-grid, ' +
+  var cardSelector = '.stat-card, .service-card, .feature-card, .process-step, .pricing-grid, .portfolio-grid, ' +
     '.pricing-card, .design-card, .design-pack, .portfolio-card, .tech-card';
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if ('IntersectionObserver' in window && !reduceMotion) {
@@ -179,11 +181,55 @@ document.addEventListener('DOMContentLoaded', function () {
     revealTargets.forEach(function (el) { revealObserver.observe(el); });
   }
 
+  /* ---------- Motion Graphics (ambient layer per section) ---------- */
+  // Each section gets drifting glows and a few floating outline shapes. The
+  // layout is fixed per section (no randomness) and mirrored on alternate
+  // sections; the hero keeps its shapes to the text side, away from the photo.
+  var fxSections = document.querySelectorAll('main > section');
+  if (!reduceMotion) {
+    var fxTypes = ['ring', 'plus', 'dot', 'square', 'tri', 'spark'];
+    var fxSizes = [18, 28, 12, 22, 32];
+    var fxSpots = [[4, 14], [93, 10], [7, 80], [90, 72], [47, 95]];
+    var heroSpots = [[3, 22], [44, 16], [4, 86], [42, 92], [24, 9]];
+    var triSvg = '<svg viewBox="0 0 24 24"><path d="M12 3 21 20H3Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>';
+
+    fxSections.forEach(function (sec, i) {
+      var isHero = sec.classList.contains('hero');
+      var flip = !isHero && i % 2 === 1;
+      var html = '<div class="fx-orb fx-orb-a"></div>' + (isHero ? '' : '<div class="fx-orb fx-orb-b"></div>');
+      (isHero ? heroSpots : fxSpots).forEach(function (spot, j) {
+        var type = fxTypes[(i + j) % fxTypes.length];
+        var size = fxSizes[(i + j * 2) % fxSizes.length];
+        var left = flip ? 100 - spot[0] : spot[0];
+        html += '<span class="fx-shape fx-' + type + '" style="left:' + left + '%;top:' + spot[1] + '%;' +
+          '--s:' + size + 'px;--d:' + (9 + ((i + j) % 5) * 1.5) + 's;--delay:-' + (j * 1.7).toFixed(1) + 's">' +
+          (type === 'tri' ? triSvg : type === 'spark' ? '✦' : '') + '</span>';
+      });
+      var fx = document.createElement('div');
+      fx.className = 'fx' + (flip ? ' fx-flip' : '');
+      fx.setAttribute('aria-hidden', 'true');
+      fx.innerHTML = html;
+      sec.insertBefore(fx, sec.firstChild);
+    });
+  }
+
+  // Run section animations only while the section is on screen
+  if ('IntersectionObserver' in window) {
+    var fxObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        entry.target.classList.toggle('fx-on', entry.isIntersecting);
+      });
+    }, { rootMargin: '100px 0px' });
+    fxSections.forEach(function (sec) { fxObserver.observe(sec); });
+  } else {
+    fxSections.forEach(function (sec) { sec.classList.add('fx-on'); });
+  }
+
   /* ---------- 3D Card Tilt (mouse/trackpad only) ---------- */
   // Cards lean toward the pointer with a soft glare; wide cards tilt less so
   // big panels don't swing. Skipped on touch screens and for reduced motion.
   if (!reduceMotion && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    document.querySelectorAll(cardSelector.replace('.pricing-grid, ', '')).forEach(function (card) {
+    document.querySelectorAll(cardSelector.replace('.pricing-grid, .portfolio-grid, ', '')).forEach(function (card) {
       var rect = null;
       var maxTilt = 8;
       var tiltFrame = null;
@@ -283,6 +329,65 @@ document.addEventListener('DOMContentLoaded', function () {
       if (isPricingSliderActive()) updateActivePricingDot();
     }, { passive: true });
     window.addEventListener('resize', syncPricingSlider);
+  }
+
+  /* ---------- Projects 3D Slider (mobile coverflow + dots) ---------- */
+  // Cards turn and shrink the further they are from the middle, so swiping
+  // spins the next project into place.
+  var projectGrid = document.querySelector('.portfolio-grid');
+  var projectDots = document.getElementById('projectDots');
+  if (projectGrid && projectDots) {
+    var projectCards = projectGrid.querySelectorAll('.portfolio-card');
+    var projectMql = window.matchMedia('(max-width: 640px)');
+    var projectFrame = null;
+
+    function updateProjectSlider() {
+      projectFrame = null;
+      var active = projectMql.matches;
+      var center = projectGrid.scrollLeft + projectGrid.clientWidth / 2;
+      var closest = 0;
+      var closestDistance = Infinity;
+      projectCards.forEach(function (card, i) {
+        if (!active) {
+          ['--cf-rot', '--cf-x', '--cf-scale', '--cf-op'].forEach(function (v) { card.style.removeProperty(v); });
+          return;
+        }
+        var off = (card.offsetLeft + card.offsetWidth / 2 - center) / card.offsetWidth;
+        var dist = Math.min(Math.abs(off), 1);
+        if (Math.abs(off) < closestDistance) {
+          closestDistance = Math.abs(off);
+          closest = i;
+        }
+        var dir = Math.max(-1, Math.min(1, off));
+        // Side cards turn their inner edge away and tuck in so a slice stays in view
+        card.style.setProperty('--cf-rot', (dir * -30).toFixed(2) + 'deg');
+        card.style.setProperty('--cf-x', (dir * -24).toFixed(1) + 'px');
+        card.style.setProperty('--cf-scale', (1 - dist * 0.1).toFixed(3));
+        card.style.setProperty('--cf-op', (1 - dist * 0.35).toFixed(3));
+      });
+      projectDots.querySelectorAll('span').forEach(function (d, i) {
+        d.classList.toggle('active', i === closest);
+      });
+    }
+
+    function requestProjectUpdate() {
+      if (!projectFrame) projectFrame = requestAnimationFrame(updateProjectSlider);
+    }
+
+    projectCards.forEach(function (card) {
+      var dot = document.createElement('span');
+      dot.addEventListener('click', function () {
+        projectGrid.scrollTo({
+          left: card.offsetLeft - (projectGrid.clientWidth - card.offsetWidth) / 2,
+          behavior: 'smooth'
+        });
+      });
+      projectDots.appendChild(dot);
+    });
+
+    projectGrid.addEventListener('scroll', requestProjectUpdate, { passive: true });
+    window.addEventListener('resize', requestProjectUpdate);
+    updateProjectSlider();
   }
 
   /* ---------- FAQ Accordion ---------- */
