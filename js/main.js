@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var revealTargets = document.querySelectorAll(
     '.marquee, .section-head > *, .about-content > :not(.stats-grid), .about-image, .stat-card, ' +
     '.service-card, .feature-card, .process-step, .pricing-grid, .pricing-fineprint, .pricing-note, ' +
-    '.portfolio-card, .portfolio-note, .tech-card, .faq-item, .cta-inner > *, ' +
+    '.design-card, .design-pack, .design-perks, .portfolio-card, .portfolio-note, .tech-card, .faq-item, .cta-inner > *, ' +
     '.contact-info > *, .contact-form-wrap, .footer-grid > *'
   );
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

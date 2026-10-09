@@ -556,7 +556,7 @@ h1, h2, h3, h4, h5, h6{
 }
 .services-panel .section-head{ margin-bottom: 0; }
 .services-grid{
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 34px 26px;
 }
 .service-icon{ width: 46px; height: 46px; font-size: 1rem; margin-bottom: 18px; }
@@ -788,6 +788,114 @@ h1, h2, h3, h4, h5, h6{
 }
 .pricing-note a{ color: var(--accent); font-weight: 600; }
 .pricing-note a:hover{ text-decoration: underline; }
+
+/* ==========================================================================
+   GRAPHIC DESIGN (poster & banner rate cards)
+   ========================================================================== */
+.design-grid{ grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.design-card{
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 26px 22px 20px;
+  transition: var(--transition);
+}
+.design-card:hover{ border-color: var(--border-strong); transform: translateY(-4px); }
+.design-icon{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px; height: 46px;
+  margin-bottom: 18px;
+  border-radius: 50%;
+  border: 1px solid var(--border-strong);
+  background: rgba(183, 148, 246, 0.06);
+  color: var(--accent);
+  font-size: 1rem;
+  transition: var(--transition);
+}
+.design-card:hover .design-icon{ border-color: var(--accent); background: rgba(183, 148, 246, 0.14); }
+.design-card h3{
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+.design-card p{ flex: 1; font-size: 0.86rem; line-height: 1.6; color: var(--text-muted); margin-bottom: 18px; }
+.design-foot{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+.design-price{
+  font-family: var(--font-head);
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: var(--heading);
+  white-space: nowrap;
+}
+.design-price small{
+  margin-right: 2px;
+  font-family: var(--font-body);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.design-order{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  white-space: nowrap;
+}
+.design-order i{ font-size: 0.7rem; transition: transform 0.25s ease; }
+.design-order:hover i{ transform: translateX(3px); }
+
+.design-pack{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  margin-top: 34px;
+  padding: 36px 34px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(165deg, rgba(96, 54, 124, 0.55) 0%, rgba(40, 24, 62, 0.6) 100%);
+  border: 1px solid rgba(183, 148, 246, 0.5);
+  box-shadow: var(--shadow-accent);
+}
+.design-pack-info{ max-width: 560px; }
+.design-pack-info h3{ font-size: 1.35rem; font-weight: 500; margin-bottom: 8px; }
+.design-pack-info p{ font-size: 0.92rem; color: var(--text-body); }
+.design-pack-price{ display: flex; flex-direction: column; align-items: flex-end; flex-shrink: 0; }
+.design-pack-price .pricing-billed{ margin-bottom: 16px; }
+
+.design-perks{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 26px;
+  margin-top: 30px;
+}
+.design-perks li{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.86rem;
+  color: var(--text-body);
+}
+.design-perks li i{ color: var(--accent); font-size: 0.8rem; }
 
 /* ==========================================================================
    PROJECTS (case-study cards)
@@ -1226,6 +1334,7 @@ h1, h2, h3, h4, h5, h6{
 
   .services-grid{ grid-template-columns: repeat(2, 1fr); }
   .why-us-grid{ grid-template-columns: repeat(2, 1fr); }
+  .design-grid{ grid-template-columns: repeat(2, 1fr); }
   .portfolio-grid{ grid-template-columns: repeat(2, 1fr); }
   .portfolio-grid > .portfolio-card:last-child:nth-child(odd){
     grid-column: 1 / -1;
@@ -1293,6 +1402,18 @@ h1, h2, h3, h4, h5, h6{
   .service-card h3{ margin-top: 4px; }
 
   .why-us-grid{ grid-template-columns: 1fr 1fr; gap: 12px; }
+  .design-grid{ grid-template-columns: 1fr; gap: 14px; }
+  .design-card{ display: grid; grid-template-columns: 46px 1fr; column-gap: 16px; padding: 20px 18px 16px; }
+  .design-icon{ grid-row: 1 / span 2; margin-bottom: 0; }
+  .design-card h3{ margin-top: 4px; }
+  .design-card p{ margin-bottom: 14px; }
+  .design-foot{ grid-column: 1 / -1; padding-top: 12px; }
+  .design-card:hover{ transform: none; }
+  .design-pack{ flex-direction: column; align-items: stretch; gap: 22px; padding: 34px 22px 26px; }
+  .design-pack .pricing-badge{ left: 22px; }
+  .design-pack-price{ align-items: flex-start; }
+  .design-pack-price .btn{ width: 100%; justify-content: center; }
+  .design-perks{ flex-direction: column; align-items: flex-start; gap: 10px; }
   .feature-card{ flex-direction: column; align-items: flex-start; padding: 18px 16px; }
   .feature-card h4{ font-size: 0.86rem; }
 
