@@ -113,9 +113,12 @@ document.addEventListener('DOMContentLoaded', function () {
     '.design-card, .design-pack, .design-perks, .portfolio-card, .portfolio-note, .tech-card, .faq-item, .cta-inner > *, ' +
     '.contact-info > *, .contact-form-wrap, .footer-grid > *'
   );
+  var cardSelector = '.stat-card, .service-card, .feature-card, .process-step, .pricing-grid, ' +
+    '.pricing-card, .design-card, .design-pack, .portfolio-card, .tech-card';
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if ('IntersectionObserver' in window && !reduceMotion) {
     revealTargets.forEach(function (el) {
+      if (el.matches(cardSelector)) el.classList.add('reveal-3d');
       // Stagger siblings in a grid slightly (capped so long grids don't lag)
       var index = el.parentElement ? Array.prototype.indexOf.call(el.parentElement.children, el) : 0;
       el.style.setProperty('--reveal-delay', Math.min(index, 5) * 100 + 'ms');
@@ -126,16 +129,70 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!entry.isIntersecting) return;
         var el = entry.target;
         revealObserver.unobserve(el);
-        el.addEventListener('transitionend', function onRevealEnd(e) {
-          if (e.target !== el || e.propertyName !== 'opacity') return;
+        var done = false;
+        function finishReveal() {
+          if (done) return;
+          done = true;
           el.removeEventListener('transitionend', onRevealEnd);
-          el.classList.remove('reveal', 'is-visible');
+          el.classList.remove('reveal', 'reveal-3d', 'is-visible');
           el.style.removeProperty('--reveal-delay');
-        });
+        }
+        function onRevealEnd(e) {
+          if (e.target === el && e.propertyName === 'opacity') finishReveal();
+        }
+        el.addEventListener('transitionend', onRevealEnd);
+        // Fallback in case transitionend never fires (e.g. tab in background)
+        setTimeout(finishReveal, 1900);
         el.classList.add('is-visible');
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
     revealTargets.forEach(function (el) { revealObserver.observe(el); });
+  }
+
+  /* ---------- 3D Card Tilt (mouse/trackpad only) ---------- */
+  // Cards lean toward the pointer with a soft glare; wide cards tilt less so
+  // big panels don't swing. Skipped on touch screens and for reduced motion.
+  if (!reduceMotion && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    document.querySelectorAll(cardSelector.replace('.pricing-grid, ', '')).forEach(function (card) {
+      var rect = null;
+      var maxTilt = 8;
+      var tiltFrame = null;
+      var px = 0, py = 0;
+      card.classList.add('tilt-card');
+
+      function applyTilt() {
+        tiltFrame = null;
+        if (!rect) return;
+        rect = card.getBoundingClientRect(); // stays right if the page scrolls mid-hover
+        var x = (px - rect.left) / rect.width;
+        var y = (py - rect.top) / rect.height;
+        card.style.setProperty('--rx', ((0.5 - y) * maxTilt * 2).toFixed(2) + 'deg');
+        card.style.setProperty('--ry', ((x - 0.5) * maxTilt * 2).toFixed(2) + 'deg');
+        card.style.setProperty('--gx', (x * 100).toFixed(1) + '%');
+        card.style.setProperty('--gy', (y * 100).toFixed(1) + '%');
+      }
+
+      card.addEventListener('pointerenter', function () {
+        // Wait until the scroll reveal has finished with this card
+        if (card.classList.contains('reveal')) return;
+        rect = card.getBoundingClientRect();
+        maxTilt = Math.max(2, Math.min(8, 8 * 320 / rect.width));
+        card.classList.add('is-tilting');
+      });
+      card.addEventListener('pointermove', function (e) {
+        if (!rect) return;
+        px = e.clientX;
+        py = e.clientY;
+        if (!tiltFrame) tiltFrame = requestAnimationFrame(applyTilt);
+      });
+      card.addEventListener('pointerleave', function () {
+        rect = null;
+        if (tiltFrame) cancelAnimationFrame(tiltFrame);
+        tiltFrame = null;
+        card.classList.remove('is-tilting');
+        ['--rx', '--ry', '--gx', '--gy'].forEach(function (v) { card.style.removeProperty(v); });
+      });
+    });
   }
 
   /* ---------- Pricing Slider (mobile card swipe + dots) ---------- */
