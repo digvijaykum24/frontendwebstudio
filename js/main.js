@@ -34,6 +34,36 @@ document.addEventListener('DOMContentLoaded', function () {
     if (scrollProgress) scrollProgress.style.transform = 'scaleX(' + (progress / 100) + ')';
   }
 
+  /* ---------- Navbar Hover Pill (desktop) ---------- */
+  // One glowing pill glides between links as the pointer moves across the
+  // menu, and fades out when the pointer leaves (CSS hides it in the drawer).
+  var navMenu = document.getElementById('navLinks');
+  if (navMenu && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    var navIndicator = document.createElement('span');
+    navIndicator.className = 'nav-indicator';
+    navIndicator.setAttribute('aria-hidden', 'true');
+    navMenu.insertBefore(navIndicator, navMenu.firstChild);
+
+    navMenu.querySelectorAll('.nav-link').forEach(function (link) {
+      link.addEventListener('pointerenter', function () {
+        var appearing = !navIndicator.classList.contains('is-visible');
+        // First hover: jump straight under the link, then fade in (no slide)
+        if (appearing) navIndicator.classList.add('no-anim');
+        navIndicator.style.width = link.offsetWidth + 'px';
+        navIndicator.style.transform = 'translateX(' + link.offsetLeft + 'px)';
+        if (appearing) {
+          void navIndicator.offsetWidth;
+          navIndicator.classList.remove('no-anim');
+          navIndicator.classList.add('is-visible');
+        }
+      });
+    });
+    var hideIndicator = function () { navIndicator.classList.remove('is-visible'); };
+    navMenu.addEventListener('pointerleave', hideIndicator);
+    var navCta = navMenu.querySelector('.btn-nav');
+    if (navCta) navCta.addEventListener('pointerenter', hideIndicator);
+  }
+
   /* ---------- Mobile Menu ---------- */
   var hamburger = document.getElementById('hamburger');
   var navLinks = document.getElementById('navLinks');
